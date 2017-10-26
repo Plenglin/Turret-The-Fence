@@ -15,7 +15,7 @@ public class RadialCameraFollow: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position = follow.transform.position + distance * (center - follow.transform.position);
+        this.transform.position = follow.transform.position + distance * (center - follow.transform.position).normalized;
         this.transform.LookAt(follow.transform);
 	}
 }
