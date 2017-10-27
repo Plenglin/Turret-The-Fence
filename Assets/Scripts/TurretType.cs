@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TurretCreator {
+public class TurretType {
 
     public string name;
     public int cost;

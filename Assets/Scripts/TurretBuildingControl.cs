@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class TurretBuildingControl : MonoBehaviour {
 
-    public TurretCreator[] turrets;
+    public TurretType[] turrets;
     public int money;
 
+    private GameObject ghostTurret;
+    private int floorMask;
     private Dictionary<KeyCode, int> keyToNumber = new Dictionary<KeyCode, int>();
-    private bool lastClicked = false;
+    private TurretType currentTurret = null;
 
 	// Use this for initialization
 	void Start () {
+
+        floorMask = LayerMask.GetMask("Floor");
 
         keyToNumber.Add(KeyCode.Alpha1, 1);
         keyToNumber.Add(KeyCode.Alpha2, 2);
@@ -32,14 +36,34 @@ public class TurretBuildingControl : MonoBehaviour {
         foreach (KeyValuePair<KeyCode, int> pair in keyToNumber) {
             KeyCode code = pair.Key;
             int index = pair.Value - 1;
-            if (index < turrets.Length && Input.GetKeyDown(code)) {
-
-                TurretCreator turret = turrets[index];
-                //Vector3 position = 
-
-                if (!lastClicked && Input.GetMouseButtonDown(0)) {
-                    lastClicked = true;
+            if (index < turrets.Length) {
+                if (Input.GetKeyDown(code)) {
+                    currentTurret = turrets[index];
+                    ghostTurret = Instantiate(currentTurret.turret);
                 }
+                if (Input.GetKeyUp(code)) {
+                    currentTurret = null;
+                    Destroy(ghostTurret);
+                    ghostTurret = null;
+                }
+            }
+        }
+
+        if (currentTurret != null) {
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit floorHit;
+
+            Vector3 turretPosition;
+
+            if (Physics.Raycast(mouseRay, out floorHit, 100f, floorMask)) {
+                turretPosition = floorHit.point;
+                ghostTurret.transform.position = turretPosition;
+            }
+
+            if (Input.GetMouseButtonDown(0)) {
+                GameObject newTurret = Instantiate(ghostTurret);
+                //newTurret.GetComponent<TurretBuildingControl>()
+                
             }
         }
 
