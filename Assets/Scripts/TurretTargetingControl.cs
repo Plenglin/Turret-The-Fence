@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class TurretTargetingControl : MonoBehaviour {
 
+    /**
+     * The furthest we can shoot. Use a negative value for infinite distance.
+     */
+    public float maxDistance;
+
     private const string TARGET_TAG = "TurretTargets";
     private TurretDirectionControl targeter;
 
@@ -16,15 +21,16 @@ public class TurretTargetingControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         GameObject target = null;
-        float closestDist = float.MaxValue;
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag(TARGET_TAG)) {
+        float closestDist = maxDistance >= 0 ? maxDistance * maxDistance : float.MaxValue;
+        GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag(TARGET_TAG);
+        foreach (GameObject obj in possibleTargets) {
             float dist = (obj.transform.position - transform.position).sqrMagnitude;
             if (dist < closestDist) {
                 target = obj;
                 closestDist = dist;
             }
         }
-
         targeter.targetObject = target;
+        Debug.Log(possibleTargets.Length);
 	}
 }
