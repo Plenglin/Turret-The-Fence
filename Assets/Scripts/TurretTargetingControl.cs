@@ -8,19 +8,19 @@ public class TurretTargetingControl : MonoBehaviour {
      * The furthest we can shoot. Use a negative value for infinite distance.
      */
     public float maxDistance;
+    public GameObject target;
 
     private const string TARGET_TAG = "TurretTargets";
-    private TurretDirectionControl targeter;
+    private TurretDirectionControl directionControl;
 
 	// Use this for initialization
 	void Start () {
-        targeter = GetComponent<TurretDirectionControl>();
-        Debug.Log(targeter);
+        directionControl = GetComponent<TurretDirectionControl>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        GameObject target = null;
+        target = null;
         float closestDist = maxDistance >= 0 ? maxDistance * maxDistance : float.MaxValue;
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag(TARGET_TAG);
         foreach (GameObject obj in possibleTargets) {
@@ -30,7 +30,8 @@ public class TurretTargetingControl : MonoBehaviour {
                 closestDist = dist;
             }
         }
-        targeter.targetObject = target;
-        Debug.Log(possibleTargets.Length);
+        if (target != null) {
+            directionControl.targetPosition = target.transform.position;
+        }
 	}
 }

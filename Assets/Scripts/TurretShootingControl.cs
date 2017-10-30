@@ -6,48 +6,50 @@ using UnityEngine;
 public class TurretShootingControl : MonoBehaviour {
 
     public float firingDelay;
+    public float lineDuration;
     public int damagePerShot;
-    public LineRenderer tracer;
+    public GameObject tracerObject;
 
-    private TurretDirectionControl targeter;
-    private TurretTargetingControl tar;
+    private TurretTargetingControl targetControl;
     private int shootableMask;
-
+    private LineRenderer tracer;
+    private float lastFiring;
 
     // Use this for initialization
     void Start () {
-		targeter = GetComponent<TurretDirectionControl>();
+		targetControl = GetComponent<TurretTargetingControl>();
+        tracer = tracerObject.GetComponent<LineRenderer>();
         shootableMask = LayerMask.GetMask("Shootable");
+        lastFiring = -firingDelay;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (targeter.targetObject != null) {
-            Fire();
-        }
-	}
-
-    private float lastFiring;
-    
-    void AttemptToFire() {
         float currentTime = Time.time;
-        if (lastFiring + firingDelay >= currentTime) {
+        if (targetControl.target != null && lastFiring + firingDelay <= currentTime) {
             Fire();
             lastFiring = currentTime;
         }
+        tracer.SetPosition(0, tracerObject.transform.position);
+        tracer.enabled = (lastFiring + lineDuration >= currentTime);
+        Debug.Log(currentTime);
     }
 
     void Fire() {
-        Debug.Log("Turret FIRING");
-        Vector3 offset = targeter.targetObject.transform.position - transform.position;
-        // Try and find an EnemyHealth script on the gameobject hit.
-        GameObject enemy = targeter.targetObject;
-        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+        GameObject enemy = targetControl.target;
+        Debug.Log("Turret FIRING at " + enemy);
 
-        // If the EnemyHealth component exist...
-        if (enemyHealth != null) {
-            // ... the enemy should take damage.
-            enemyHealth.TakeDamage(damagePerShot, enemy.transform.position);
+        if (enemy != null) {
+            Vector3 offset = enemy.transform.position - transform.position;
+            // Try and find an EnemyHealth script on the gameobject hit.
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+
+            // If the EnemyHealth component exist...
+            if (enemyHealth != null) {
+                // ... the enemy should take damage.
+                enemyHealth.TakeDamage(damagePerShot, enemy.transform.position);
+                tracer.SetPosition(1, enemy.transform.position);
+            }
         }
        
     }
