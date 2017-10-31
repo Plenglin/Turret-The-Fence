@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using CompleteProject;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ public class TurretTargetingControl : MonoBehaviour {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag(TARGET_TAG);
         foreach (GameObject obj in possibleTargets) {
             float dist = (obj.transform.position - transform.position).sqrMagnitude;
-            if (dist < closestDist) {
+            if (dist < closestDist && !obj.GetComponent<EnemyHealth>().isDead) {
                 target = obj;
                 closestDist = dist;
             }
