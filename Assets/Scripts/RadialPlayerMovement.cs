@@ -50,7 +50,7 @@ public class RadialPlayerMovement : MonoBehaviour
 
     void Move(float h, float v)
     {
-        Vector3 offset = (radialCamera.center - this.transform.position).normalized;
+        Vector3 offset = (radialCamera.center.position - this.transform.position).normalized;
         offset.y = 0;
         Vector3 horizontal = Vector3.Cross(offset, Vector3.up);
         Vector3 change = -v * offset + h * horizontal;

@@ -6,7 +6,7 @@ public class RadialCameraFollow: MonoBehaviour {
 
     public GameObject follow;
     public float distance;
-    public Vector3 center;
+    public Transform center;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +15,8 @@ public class RadialCameraFollow: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position = follow.transform.position + distance * (center - follow.transform.position).normalized;
-        this.transform.LookAt(follow.transform);
+        transform.position = follow.transform.position + distance * (center.position - follow.transform.position).normalized;
+        transform.position.Set(transform.position.x, center.position.y, transform.position.z);
+        transform.LookAt(follow.transform);
 	}
 }

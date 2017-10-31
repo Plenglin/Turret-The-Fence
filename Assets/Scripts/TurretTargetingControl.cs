@@ -9,6 +9,7 @@ public class TurretTargetingControl : MonoBehaviour {
      */
     public float maxDistance;
     public GameObject target;
+    public Vector3 pointingOffset;
 
     private const string TARGET_TAG = "TurretTargets";
     private TurretDirectionControl directionControl;
@@ -31,7 +32,7 @@ public class TurretTargetingControl : MonoBehaviour {
             }
         }
         if (target != null) {
-            directionControl.targetPosition = target.transform.position;
+            directionControl.targetPosition = target.transform.position + pointingOffset;
         }
 	}
 }

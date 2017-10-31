@@ -19,7 +19,7 @@ public class TurretDirectionControl : MonoBehaviour {
         if (targetPosition != null) {
             Vector3 offset = targetPosition - center.transform.position;
             Vector3 angles = Quaternion.LookRotation(offset).eulerAngles;
-            pitchObject.transform.localRotation = Quaternion.Euler(angles.x, 0, 0);
+            pitchObject.transform.localRotation = Quaternion.Euler(0, 0, angles.x);
             yawObject.transform.localRotation = Quaternion.Euler(0, angles.y + 90, 0);
         }
 	}

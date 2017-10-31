@@ -40,6 +40,7 @@ public class TurretBuildingControl : MonoBehaviour {
                 if (Input.GetKeyDown(code)) {
                     currentTurret = turrets[index];
                     ghostTurret = Instantiate(currentTurret.turret);
+                    ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
                 }
                 if (Input.GetKeyUp(code)) {
                     currentTurret = null;
@@ -62,6 +63,7 @@ public class TurretBuildingControl : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(0)) {
                 GameObject newTurret = Instantiate(ghostTurret);
+                newTurret.GetComponent<TurretTargetingControl>().enabled = true;
                 //newTurret.GetComponent<TurretBuildingControl>()
                 
             }

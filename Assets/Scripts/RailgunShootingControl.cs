@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretShootingControl : MonoBehaviour {
+public class RailgunShootingControl : MonoBehaviour {
 
     public float firingDelay;
     public float lineDuration;
@@ -32,12 +32,10 @@ public class TurretShootingControl : MonoBehaviour {
         }
         tracer.SetPosition(0, tracerObject.transform.position);
         tracer.enabled = (lastFiring + lineDuration >= currentTime);
-        Debug.Log(currentTime);
     }
 
     void Fire() {
         GameObject enemy = targetControl.target;
-        Debug.Log("Turret FIRING at " + enemy);
 
         if (enemy != null) {
             Vector3 offset = enemy.transform.position - transform.position;
@@ -48,7 +46,7 @@ public class TurretShootingControl : MonoBehaviour {
             if (enemyHealth != null) {
                 // ... the enemy should take damage.
                 enemyHealth.TakeDamage(damagePerShot, enemy.transform.position);
-                tracer.SetPosition(1, enemy.transform.position);
+                tracer.SetPosition(1, enemy.transform.position + targetControl.pointingOffset);
             }
         }
        
