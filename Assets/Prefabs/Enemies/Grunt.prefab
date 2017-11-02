@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 11443958}
   - component: {fileID: 8207972}
   - component: {fileID: 11474950}
+  - component: {fileID: 114431746521374780}
   m_Layer: 9
   m_Name: Grunt
   m_TagString: TurretTargets
@@ -310,6 +311,7 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  isDead: 0
   IsSpawner: 0
 --- !u!114 &11474950
 MonoBehaviour:
@@ -6744,3 +6746,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 108482}
   m_IsPrefabParent: 1
+--- !u!114 &114431746521374780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522306c848447a64598ba2042e168d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 10

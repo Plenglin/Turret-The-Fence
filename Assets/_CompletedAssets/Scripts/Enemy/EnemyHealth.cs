@@ -11,6 +11,8 @@ namespace CompleteProject
         public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
         public AudioClip deathClip;                 // The sound to play when the enemy dies.
 
+        public int money = 10;                      // Money to drop when dead
+
 
         Animator anim;                              // Reference to the animator.
         AudioSource enemyAudio;                     // Reference to the audio source.
@@ -19,7 +21,8 @@ namespace CompleteProject
         public bool isDead;                                // Whether the enemy is dead.
         bool isSinking;  
 		public bool IsSpawner = false;// Whether the enemy has started sinking through the floor.
-
+        private bool addedMoney = false;
+        private MoneyControl balance;
 
         void Awake ()
         {
@@ -29,6 +32,8 @@ namespace CompleteProject
             enemyAudio = GetComponent <AudioSource> ();
             hitParticles = GetComponentInChildren <ParticleSystem> ();
             capsuleCollider = GetComponent <CapsuleCollider> ();
+
+            balance = GameObject.FindGameObjectWithTag("Player").GetComponent<MoneyControl>();
 
             // Setting the current health when the enemy first spawns.
             currentHealth = startingHealth;
@@ -76,6 +81,10 @@ namespace CompleteProject
 
         void Death ()
         {
+            if (!addedMoney) {
+                addedMoney = true;
+                balance.money += money;
+            }
             // The enemy is dead.
             isDead = true;
 

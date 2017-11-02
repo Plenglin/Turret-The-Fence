@@ -6018,10 +6018,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turrets:
   - name: Railgun
-    cost: 50
+    cost: 150
     turret: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
   - name: Beam
-    cost: 50
+    cost: 250
     turret: {fileID: 1731520026279250, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
   - name: 
     cost: 0
