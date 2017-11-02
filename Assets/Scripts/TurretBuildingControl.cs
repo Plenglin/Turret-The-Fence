@@ -69,7 +69,7 @@ public class TurretBuildingControl : MonoBehaviour {
                 ghostTurret.transform.position = turretPosition;
             }
 
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(1)) {
                 if (balance.money >= currentTurret.cost) {
                     GameObject newTurret = Instantiate(ghostTurret);
                     newTurret.GetComponent<TurretTargetingControl>().enabled = true;
