@@ -1,19 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretBuildingControl : MonoBehaviour {
 
     public TurretType[] turrets;
     public int money;
+    public Text dataDisplay;
 
     private GameObject ghostTurret;
     private int floorMask;
     private Dictionary<KeyCode, int> keyToNumber = new Dictionary<KeyCode, int>();
     private TurretType currentTurret = null;
+    private GameObject player;
+    private string error;
+    private MoneyControl balance;
 
 	// Use this for initialization
 	void Start () {
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        balance = player.GetComponent<MoneyControl>();
 
         floorMask = LayerMask.GetMask("Floor");
 
@@ -31,8 +39,8 @@ public class TurretBuildingControl : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-	    
+    void Update() {
+
         foreach (KeyValuePair<KeyCode, int> pair in keyToNumber) {
             KeyCode code = pair.Key;
             int index = pair.Value - 1;
@@ -62,12 +70,33 @@ public class TurretBuildingControl : MonoBehaviour {
             }
 
             if (Input.GetMouseButtonDown(0)) {
-                GameObject newTurret = Instantiate(ghostTurret);
-                newTurret.GetComponent<TurretTargetingControl>().enabled = true;
+                if (balance.money >= currentTurret.cost) {
+                    GameObject newTurret = Instantiate(ghostTurret);
+                    newTurret.GetComponent<TurretTargetingControl>().enabled = true;
+                    balance.money -= currentTurret.cost;
+                    error = "";
+                } else {
+                    error = "Error: You don't have enough money";
+                }
                 //newTurret.GetComponent<TurretBuildingControl>()
-                
+
             }
         }
 
-	}
+        dataDisplay.text = getDisplayString();
+
+    }
+
+    string getDisplayString() {
+
+        string output = "Turrets\n";
+        for (int i=0; i < turrets.Length; i++) {
+            TurretType turr = turrets[i];
+            output += string.Format("{0}. {1} (${2})\n", i+1, turr.name, turr.cost);
+        }
+        output += error;
+        return output;
+
+    }
+
 }
