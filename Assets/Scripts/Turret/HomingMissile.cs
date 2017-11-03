@@ -41,7 +41,7 @@ public class HomingMissile : MonoBehaviour {
         Debug.Log(other);
         if (other.gameObject == target) {
             Debug.Log("Rocket hit object");
-            other.gameObject.GetComponent<EnemyHealth>();
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, other.ClosestPoint(transform.position));
             Destroy(gameObject);
         }
     }
