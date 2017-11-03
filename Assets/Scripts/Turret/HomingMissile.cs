@@ -6,18 +6,27 @@ using CompleteProject;
 public class HomingMissile : MonoBehaviour {
 
     public GameObject target;
+    public Collider explosionRadius;
 
     public float speed = 50;  // Units/sec
     public float turning = 30;  // Degrees/sec
-    public int damage = 30;
+    public float timeUntilExplosion;  // Explode if you haven't already by this time
+    public int directHitDamage;
+    public int aoeDamage;
 
-	// Use this for initialization
-	void Start () {
-        //velocity = transform.forward.normalized * (speed);
+    private int creation;
+
+    // Use this for initialization
+    void Start () {
+        creation = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (Time.time >= creation + timeUntilExplosion) {
+            Explode(null);
+        }
+
         float maxTurn = turning * speed;
         /*
         Vector3 offset = target.transform.position - thisCollider.transform.position;
@@ -34,15 +43,22 @@ public class HomingMissile : MonoBehaviour {
         //rotate us over time according to speed until we are in the required rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, look, Time.deltaTime * turning);
         transform.position += transform.forward * Time.deltaTime * speed;
-        
+
+
     }
 
     void OnTriggerEnter(Collider other) {
         Debug.Log(other);
-        if (other.gameObject == target) {
-            Debug.Log("Rocket hit object");
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, other.ClosestPoint(transform.position));
-            Destroy(gameObject);
+        if (other.gameObject.tag == "TurretTargets") {
+            Explode(other);
         }
     }
+
+    void Explode(Collider hit) {
+        if (hit != null) {
+            target.gameObject.GetComponent<EnemyHealth>().TakeDamage(directHitDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+        }
+        Destroy(gameObject);
+    }
+
 }
