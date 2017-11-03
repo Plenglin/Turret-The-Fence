@@ -33,7 +33,7 @@ public class MissileShootingControl : MonoBehaviour {
             GameObject m = Instantiate(missile);
             HomingMissile tar = m.GetComponent<HomingMissile>();
             m.transform.position = t.position;
-            m.transform.rotation = directionControl.yawObject.transform.rotation;
+            m.transform.rotation = t.rotation;
             tar.target = targetControl.target;
         }
     }

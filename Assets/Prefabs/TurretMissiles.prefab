@@ -612,3 +612,5 @@ MonoBehaviour:
   yawObject: {fileID: 1756530210007644}
   pitchObject: {fileID: 1554853940086190}
   targetPosition: {x: 0, y: 0, z: 0}
+  yawOffset: 90
+  pitchOffset: 0

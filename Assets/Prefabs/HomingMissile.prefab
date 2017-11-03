@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 50
-  turning: 20
+  turning: 10
   damage: 30
 --- !u!136 &136389928019630416
 CapsuleCollider:

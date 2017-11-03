@@ -514,6 +514,8 @@ MonoBehaviour:
   yawObject: {fileID: 1605409113533772}
   pitchObject: {fileID: 1112796983064076}
   targetPosition: {x: 0, y: 0, z: 0}
+  yawOffset: 90
+  pitchOffset: 0
 --- !u!114 &114259059680424672
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -9,8 +9,11 @@ public class TurretDirectionControl : MonoBehaviour {
     public GameObject pitchObject;
     public Vector3 targetPosition;
 
-	// Use this for initialization
-	void Start () {
+    public float yawOffset = 0;
+    public float pitchOffset = 0;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -19,8 +22,8 @@ public class TurretDirectionControl : MonoBehaviour {
         if (targetPosition != null) {
             Vector3 offset = targetPosition - center.transform.position;
             Vector3 angles = Quaternion.LookRotation(offset).eulerAngles;
-            pitchObject.transform.localRotation = Quaternion.Euler(0, 0, angles.x);
-            yawObject.transform.localRotation = Quaternion.Euler(0, angles.y + 90, 0);
+            pitchObject.transform.localRotation = Quaternion.Euler(0, 0, angles.x + pitchOffset);
+            yawObject.transform.localRotation = Quaternion.Euler(0, angles.y + yawOffset, 0);
         }
 	}
 }
