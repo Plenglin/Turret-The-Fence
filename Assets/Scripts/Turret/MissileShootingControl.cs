@@ -7,6 +7,8 @@ public class MissileShootingControl : MonoBehaviour {
     public Transform[] missileOrigins;
     public GameObject missile;
 
+    public float missileSpread;
+
     public float salvoDelay;
     public float reloadingTime;
 
@@ -35,7 +37,11 @@ public class MissileShootingControl : MonoBehaviour {
             Debug.Log("firing");
             GameObject miss = Instantiate(missile);
             miss.transform.position = origin.position;
-            miss.transform.rotation = origin.rotation;
+            miss.transform.rotation = origin.rotation * Quaternion.Euler(
+                Random.Range(-missileSpread, missileSpread),
+                Random.Range(-missileSpread, missileSpread),
+                Random.Range(-missileSpread, missileSpread)
+            );
             HomingMissile tar = miss.GetComponent<HomingMissile>();
             tar.target = targetControl.target;
             yield return new WaitForSeconds(salvoDelay);

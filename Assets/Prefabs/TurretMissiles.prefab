@@ -601,6 +601,7 @@ MonoBehaviour:
   - {fileID: 4359455162839132}
   - {fileID: 4782066856877116}
   missile: {fileID: 1624631228308008, guid: ad4642b63b0907d468ce02b294377c4e, type: 2}
+  missileSpread: 20
   salvoDelay: 0.1
   reloadingTime: 3
 --- !u!114 &114822921203651018

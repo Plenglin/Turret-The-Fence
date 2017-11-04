@@ -191,7 +191,7 @@ MonoBehaviour:
   model: {fileID: 1478022170114042}
   explosion: {fileID: 114148140416186048}
   explosionParticles: {fileID: 198154615935715146}
-  speed: 50
+  speed: 30
   turning: 10
   timeUntilExplosion: 5
   minExplodeDistance: 1
