@@ -188,12 +188,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  model: {fileID: 1478022170114042}
   explosion: {fileID: 114148140416186048}
+  explosionParticles: {fileID: 198154615935715146}
   speed: 50
   turning: 10
   timeUntilExplosion: 5
+  minExplodeDistance: 1
   directHitDamage: 30
-  aoeDamage: 10
+  splashDamage: 0
 --- !u!135 &135845498733411126
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -279,14 +282,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 177636074
+  randomSeed: -1698558551
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.47
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -327,7 +330,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -369,7 +372,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9764706, g: 0.9098039, b: 0, a: 1}
+      maxColor: {r: 0.97794116, g: 0.681385, b: 0.15100564, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -431,8 +434,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 5
+      scalar: 15
+      minScalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1459,7 +1462,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

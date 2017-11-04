@@ -6,15 +6,19 @@ using CompleteProject;
 public class HomingMissile : MonoBehaviour {
 
     public GameObject target;
+    public GameObject model;
     public AOEManager explosion;
+    public ParticleSystem explosionParticles;
 
     public float speed = 50;  // Units/sec
     public float turning = 30;  // Degrees/sec
     public float timeUntilExplosion = 5;  // Explode if you haven't already by this time
+    public float minExplodeDistance = 10;  // Explode if you are this close
     public int directHitDamage;  // Not including the AOE
-    public int aoeDamage;
+    public int splashDamage;
 
     private float creation;
+    private bool stopped = false;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +27,10 @@ public class HomingMissile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (stopped) {
+            model.SetActive(false);
+            return;
+        }
         if (Time.time >= creation + timeUntilExplosion) {
             Explode(null);
         }
@@ -35,8 +43,12 @@ public class HomingMissile : MonoBehaviour {
         transform.rotation *= toRotate;
         transform.position += transform.forward.normalized * speed;*/
         //find the vector pointing from our position to the target
-        Vector3 offset = (target.transform.position - transform.position).normalized;
+        Vector3 offset = (target.transform.position - transform.position);
 
+        if (offset.magnitude <= minExplodeDistance) {
+            Explode(target.GetComponent<Collider>());
+            return;
+        }
         //create the rotation we need to be in to look at the target
         Quaternion look = Quaternion.LookRotation(offset);
 
@@ -55,13 +67,18 @@ public class HomingMissile : MonoBehaviour {
     }
 
     void Explode(Collider hit) {
+        explosionParticles.Stop();
+        explosionParticles.Play();
         if (hit != null) {
             target.gameObject.GetComponent<EnemyHealth>().TakeDamage(directHitDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
         }
         foreach (Collider collider in explosion.touching) {
-            collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(aoeDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+            if (collider != null) {
+                collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(splashDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+            }
         }
-        Destroy(gameObject);
+        stopped = true;
+        Destroy(gameObject, 1);
     }
 
 }
