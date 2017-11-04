@@ -14,7 +14,7 @@ public class HomingMissile : MonoBehaviour {
     public int directHitDamage;
     public int aoeDamage;
 
-    private int creation;
+    private float creation;
 
     // Use this for initialization
     void Start () {
