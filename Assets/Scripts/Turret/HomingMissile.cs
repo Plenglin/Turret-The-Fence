@@ -6,12 +6,12 @@ using CompleteProject;
 public class HomingMissile : MonoBehaviour {
 
     public GameObject target;
-    public Collider explosionRadius;
+    public AOEManager explosion;
 
     public float speed = 50;  // Units/sec
     public float turning = 30;  // Degrees/sec
     public float timeUntilExplosion = 5;  // Explode if you haven't already by this time
-    public int directHitDamage;
+    public int directHitDamage;  // Not including the AOE
     public int aoeDamage;
 
     private float creation;
@@ -57,6 +57,9 @@ public class HomingMissile : MonoBehaviour {
     void Explode(Collider hit) {
         if (hit != null) {
             target.gameObject.GetComponent<EnemyHealth>().TakeDamage(directHitDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+        }
+        foreach (Collider collider in explosion.touching) {
+            collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(aoeDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
         }
         Destroy(gameObject);
     }
