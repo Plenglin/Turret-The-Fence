@@ -7,34 +7,38 @@ public class MissileShootingControl : MonoBehaviour {
     public Transform[] missileOrigins;
     public GameObject missile;
 
-    public float firingDelay;
+    public float salvoDelay;
     public float reloadingTime;
 
     private TurretTargetingControl targetControl;
     private TurretDirectionControl directionControl;
-    private float lastFire = 0;
+    private float lastFire;
 
     // Use this for initialization
     void Start () {
+        lastFire = -reloadingTime;
         targetControl = GetComponent<TurretTargetingControl>();
         directionControl = GetComponent<TurretDirectionControl>();
     }
 
     // Update is called once per frame
     void Update () {
-        if (lastFire + reloadingTime <= Time.time && targetControl.target != null) {
-            Fire();
+        if (Time.time >= lastFire + reloadingTime && targetControl.target != null) {
+            Debug.Log("starting salvo");
+            StartCoroutine("Fire", 0);
             lastFire = Time.time;
         }
 	}
 
-    void Fire() {
-        foreach (Transform t in missileOrigins) {
-            GameObject m = Instantiate(missile);
-            HomingMissile tar = m.GetComponent<HomingMissile>();
-            m.transform.position = t.position;
-            m.transform.rotation = t.rotation;
+    IEnumerator Fire() {
+        foreach (Transform origin in missileOrigins) {
+            Debug.Log("firing");
+            GameObject miss = Instantiate(missile);
+            miss.transform.position = origin.position;
+            miss.transform.rotation = origin.rotation;
+            HomingMissile tar = miss.GetComponent<HomingMissile>();
             tar.target = targetControl.target;
+            yield return new WaitForSeconds(salvoDelay);
         }
     }
 

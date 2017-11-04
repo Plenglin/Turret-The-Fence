@@ -10,7 +10,7 @@ public class HomingMissile : MonoBehaviour {
 
     public float speed = 50;  // Units/sec
     public float turning = 30;  // Degrees/sec
-    public float timeUntilExplosion;  // Explode if you haven't already by this time
+    public float timeUntilExplosion = 5;  // Explode if you haven't already by this time
     public int directHitDamage;
     public int aoeDamage;
 
