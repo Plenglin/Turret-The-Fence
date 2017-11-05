@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace EnemySpawning {
-
-    public enum BranchType {
-        SimultaneousAll,  // Spawn all the things at once and wait for all of them to end before spawning the next set
-        Sequential  // These are to be spawned sequentially
-    }
-
+    
     [System.Serializable]
     public class WaveDescription {
         public SemiWaveDescription[] spawns;
@@ -16,7 +11,6 @@ namespace EnemySpawning {
 
     [System.Serializable]
     public class SemiWaveDescription {
-        public BranchType type;
         public SpawnDescription[] toSpawn;
     }
 
@@ -29,22 +23,15 @@ namespace EnemySpawning {
         public int burstsOf = 1;
         public float timeBetweenSpawns = 0.5f;
 
-        public IEnumerator DoSpawnAt(Vector3 position, EnemySpawnManager parent) {
+        public IEnumerator DoSpawnAt(Vector3 position) {
             for (int i = 0; i < bursts; i++) {
                 for (int j = 0; j < burstsOf; j++) {
                     MonoBehaviour.Instantiate(enemy);
                     enemy.transform.position = position;
-                    if (parent != null) {
-                        parent.OnCoroutineComplete();
-                    }
                     yield return new WaitForSeconds(timeBetweenSpawns);
                 }
                 yield return new WaitForSeconds(timeBetweenBursts - timeBetweenSpawns);
             }
-        }
-
-        public IEnumerator DoSpawnAt(Vector3 position) {
-            return DoSpawnAt(position, null);
         }
 
     }

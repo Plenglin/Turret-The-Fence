@@ -103,7 +103,7 @@ namespace CompleteProject
 
         public void StartSinking ()
         {
-			Debug.Log("StartSinking");
+			//Debug.Log("StartSinking");
             // Find and disable the Nav Mesh Agent.
 			if (!IsSpawner)	GetComponent <NavMeshAgent> ().enabled = false;
 	
@@ -114,7 +114,7 @@ namespace CompleteProject
             isSinking = true;
 
             // Increase the score by the enemy's score value.
-			Debug.Log("Making it to score");
+			//Debug.Log("Making it to score");
 			ScoreManager.score += scoreValue;
 
             // After 2 seconds destory the enemy.
