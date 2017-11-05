@@ -206,9 +206,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486fe3591b1859240aee6e4e9145c24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreas: []
+  spawnAreas:
+  - {fileID: 345275349}
+  - {fileID: 1725468539}
+  - {fileID: 933997770}
+  - {fileID: 881311221}
+  - {fileID: 1678790765}
   wave:
-    spawns: []
+    spawns:
+    - type: 0
+      toSpawn:
+      - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
+        bursts: 3
+        timeBetweenBursts: 3
+        burstsOf: 3
+        timeBetweenSpawns: 0.5
+      - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37,
+          type: 2}
+        bursts: 3
+        timeBetweenBursts: 1
+        burstsOf: 2
+        timeBetweenSpawns: 0.5
   completedCoroutines: 0
 --- !u!4 &14871712
 Transform:

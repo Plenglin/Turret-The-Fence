@@ -18,7 +18,7 @@ namespace EnemySpawning {
 
         // Use this for initialization
         void Start() {
-            
+            StartCoroutine(DoWave());
         }
 
         // Update is called once per frame
@@ -27,6 +27,7 @@ namespace EnemySpawning {
         }
 
         IEnumerator DoWave() {
+            Debug.Log("beginning wave");
             foreach (SemiWaveDescription sw in wave.spawns) {
                 switch (sw.type) {
                     case BranchType.Sequential:

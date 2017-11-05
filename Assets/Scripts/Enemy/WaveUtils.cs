@@ -39,7 +39,7 @@ namespace EnemySpawning {
                     }
                     yield return new WaitForSeconds(timeBetweenSpawns);
                 }
-                yield return new WaitForSeconds(timeBetweenBursts);
+                yield return new WaitForSeconds(timeBetweenBursts - timeBetweenSpawns);
             }
         }
 
