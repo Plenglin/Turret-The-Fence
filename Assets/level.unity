@@ -187,11 +187,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 14871712}
-  - component: {fileID: 14871711}
-  - component: {fileID: 14871710}
   - component: {fileID: 14871709}
-  - component: {fileID: 14871714}
-  - component: {fileID: 14871713}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -207,49 +203,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 14871708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 486fe3591b1859240aee6e4e9145c24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemy: {fileID: 1966572300714264, guid: b0d6de60a731d32459ebc79d22a27f19, type: 2}
-  spawnTime: 10
-  spawnPoints:
-  - {fileID: 933997770}
---- !u!114 &14871710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemy: {fileID: 1051065619865720, guid: fc11d7e5007f2c641a62589d657531f3, type: 2}
-  spawnTime: 7
-  spawnPoints:
-  - {fileID: 1725468539}
-  - {fileID: 933997770}
---- !u!114 &14871711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37, type: 2}
-  spawnTime: 3
-  spawnPoints:
-  - {fileID: 345275349}
-  - {fileID: 1725468539}
-  - {fileID: 1678790765}
+  spawnAreas: []
+  wave:
+    spawns: []
+  completedCoroutines: 0
 --- !u!4 &14871712
 Transform:
   m_ObjectHideFlags: 0
@@ -263,40 +223,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &14871713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemy: {fileID: 1964168673362740, guid: 981b7a2204b7321419044e85f9b1ae87, type: 2}
-  spawnTime: 5
-  spawnPoints:
-  - {fileID: 1678790765}
---- !u!114 &14871714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf862ffeb7e74943a1729f1cff11eb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
-  spawnTime: 1.5
-  spawnPoints:
-  - {fileID: 881311221}
-  - {fileID: 933997770}
-  - {fileID: 345275349}
 --- !u!1 &28357257
 GameObject:
   m_ObjectHideFlags: 0
