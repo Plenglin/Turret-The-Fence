@@ -10,18 +10,30 @@ namespace EnemySpawning {
     public class EnemySpawnManager : MonoBehaviour {
 
         public Transform[] spawnAreas;
-        public WaveDescription wave;
+        public Wave wave;
 
         private const float waitOnCoroutines = 0.25f;
+        private int completed;
 
         public IEnumerator DoWave() {
-            Debug.Log("beginning wave");
-            foreach (SemiWaveDescription sw in wave.spawns) {
-                foreach (SpawnDescription sp in sw.toSpawn) {
-                    yield return sp.DoSpawnAt(getRandomSpawnArea());
-                }
+            completed = 0;
+            foreach (SpawnDescription sp in wave.spawns) {
+                StartCoroutine(DoSpawnDescription(sp));
             }
-            yield return new WaitForSeconds(10);
+            yield return new WaitUntil(() => completed == wave.spawns.Length);
+        }
+
+        public IEnumerator DoSpawnDescription(SpawnDescription sp) {
+            for (int i = 0; i < sp.bursts; i++) {
+                Vector3 spawnArea = getRandomSpawnArea();
+                for (int j = 0; j < sp.burstsOf; j++) {
+                    GameObject enemy = MonoBehaviour.Instantiate(sp.enemy);
+                    enemy.transform.position = spawnArea;
+                    yield return new WaitForSeconds(sp.timeBetweenSpawns);
+                }
+                yield return new WaitForSeconds(sp.timeBetweenBursts - sp.timeBetweenSpawns);
+            }
+            completed++;
         }
 
         public Vector3 getRandomSpawnArea() {

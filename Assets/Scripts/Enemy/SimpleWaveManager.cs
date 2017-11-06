@@ -10,7 +10,7 @@ namespace EnemySpawning {
     /// </summary>
     public class SimpleWaveManager : MonoBehaviour {
 
-        public WaveDescription[] waves;
+        public Wave[] waves;
         public EnemySpawnManager spawner;
         public Text waveStartNotifier;
         public Text waveCounter;

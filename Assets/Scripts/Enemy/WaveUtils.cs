@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace EnemySpawning {
-    
-    [System.Serializable]
-    public class WaveDescription {
-        public SemiWaveDescription[] spawns;
-    }
 
     [System.Serializable]
-    public class SemiWaveDescription {
-        public SpawnDescription[] toSpawn;
+    public class Wave {
+
+        public SpawnDescription[] spawns;
+
     }
 
     [System.Serializable]
