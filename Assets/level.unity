@@ -244,21 +244,21 @@ MonoBehaviour:
       - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
         bursts: 5
         timeBetweenBursts: 0.2
-        burstsOf: 6
+        burstsOf: 3
         timeBetweenSpawns: 1
   - spawns:
     - toSpawn:
       - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
-        bursts: 5
-        timeBetweenBursts: 0.2
+        bursts: 2
+        timeBetweenBursts: 1
         burstsOf: 6
-        timeBetweenSpawns: 1
+        timeBetweenSpawns: 0.1
       - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37,
           type: 2}
-        bursts: 5
-        timeBetweenBursts: 0.2
-        burstsOf: 6
-        timeBetweenSpawns: 1
+        bursts: 2
+        timeBetweenBursts: 1
+        burstsOf: 4
+        timeBetweenSpawns: 0.1
   spawner: {fileID: 14871709}
   waveStartNotifier: {fileID: 1056192717}
   waveCounter: {fileID: 848885776}
@@ -6099,7 +6099,6 @@ MonoBehaviour:
   - name: MLRS
     cost: 500
     turret: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
-  money: 100
   dataDisplay: {fileID: 543615226}
 --- !u!114 &1935204564
 MonoBehaviour:
@@ -6113,7 +6112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1580510755}
-  money: 0
+  money: 150
 --- !u!1 &1940943154
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TurretBuildingControl : MonoBehaviour {
 
     public TurretType[] turrets;
-    public int money;
     public Text dataDisplay;
 
     private GameObject ghostTurret;
