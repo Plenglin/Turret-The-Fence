@@ -211,6 +211,7 @@ MonoBehaviour:
   - {fileID: 1678790765}
   wave:
     spawns: []
+  enemies: []
 --- !u!114 &14871710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +226,7 @@ MonoBehaviour:
   waves:
   - spawns:
     - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
-      bursts: 5
+      bursts: 1
       timeBetweenBursts: 2
       burstsOf: 3
       timeBetweenSpawns: 0.2
@@ -6088,6 +6089,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   display: {fileID: 1580510755}
   money: 150
+--- !u!114 &1935204571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1935204561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429a2273ef4705f41a2884455f7e0cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1940943154
 GameObject:
   m_ObjectHideFlags: 0

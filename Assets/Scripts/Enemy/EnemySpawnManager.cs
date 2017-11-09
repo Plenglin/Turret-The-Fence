@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using CompleteProject;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,16 +12,30 @@ namespace EnemySpawning {
 
         public Transform[] spawnAreas;
         public Wave wave;
+        public List<GameObject> enemies;
+
+        private StatisticTracker stats;
 
         private const float waitOnCoroutines = 0.25f;
         private int completed;
 
+        private void Start() {
+            stats = GameObject.FindGameObjectWithTag("Player").GetComponent<StatisticTracker>();
+        }
+
         public IEnumerator DoWave() {
+            enemies = new List<GameObject>();
             completed = 0;
+            stats.OnWaveBegin();
             foreach (SpawnDescription sp in wave.spawns) {
                 StartCoroutine(DoSpawnDescription(sp));
             }
             yield return new WaitUntil(() => completed == wave.spawns.Length);
+            stats.OnWaveEnd();
+            yield return new WaitUntil(() => {
+                return enemies.TrueForAll((obj) => obj == null);
+            });  // Wait until all enemies are dead
+            stats.OnLastEnemyKilled();
         }
 
         public IEnumerator DoSpawnDescription(SpawnDescription sp) {
@@ -29,6 +44,7 @@ namespace EnemySpawning {
                 for (int j = 0; j < sp.burstsOf; j++) {
                     GameObject enemy = MonoBehaviour.Instantiate(sp.enemy);
                     enemy.transform.position = spawnArea;
+                    enemies.Add(enemy);
                     yield return new WaitForSeconds(sp.timeBetweenSpawns);
                 }
                 yield return new WaitForSeconds(sp.timeBetweenBursts - sp.timeBetweenSpawns);
