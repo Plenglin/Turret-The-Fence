@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38, y: 0.69, z: -38.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 433912}
@@ -311,6 +311,7 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  drop: {fileID: 1237020577541580, guid: fe711af601ad8774993b3be6e5c9ce0f, type: 2}
   money: 10
   isDead: 0
   IsSpawner: 0

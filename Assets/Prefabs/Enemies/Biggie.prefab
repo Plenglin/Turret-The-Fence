@@ -334,6 +334,7 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 100
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  drop: {fileID: 1237020577541580, guid: fe711af601ad8774993b3be6e5c9ce0f, type: 2}
   money: 100
   isDead: 0
   IsSpawner: 0

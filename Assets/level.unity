@@ -232,15 +232,30 @@ MonoBehaviour:
   - spawns:
     - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
       bursts: 5
-      timeBetweenBursts: 2
-      burstsOf: 6
+      timeBetweenBursts: 4
+      burstsOf: 4
       timeBetweenSpawns: 0.15
     - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37, type: 2}
       bursts: 5
-      timeBetweenBursts: 2
+      timeBetweenBursts: 5
       burstsOf: 4
       timeBetweenSpawns: 0.15
-  - spawns: []
+  - spawns:
+    - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
+      bursts: 40
+      timeBetweenBursts: 1
+      burstsOf: 1
+      timeBetweenSpawns: 0.5
+    - enemy: {fileID: 1051065619865720, guid: fc11d7e5007f2c641a62589d657531f3, type: 2}
+      bursts: 10
+      timeBetweenBursts: 2
+      burstsOf: 2
+      timeBetweenSpawns: 0.1
+    - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37, type: 2}
+      bursts: 10
+      timeBetweenBursts: 1
+      burstsOf: 2
+      timeBetweenSpawns: 0.5
   - spawns: []
   spawner: {fileID: 14871709}
   waveStartNotifier: {fileID: 1056192717}
@@ -2034,7 +2049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -345, y: 58}
+  m_AnchoredPosition: {x: -293.00012, y: 58}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543615226
@@ -2929,7 +2944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 393, y: 131}
+  m_AnchoredPosition: {x: 338, y: 131}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848885776
@@ -3472,7 +3487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 397, y: -231}
+  m_AnchoredPosition: {x: 316, y: -202}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056192717
@@ -4851,7 +4866,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 393, y: 155}
+  m_AnchoredPosition: {x: 337, y: 155}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591794898
@@ -4945,7 +4960,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 467514, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -8.57
+      value: -4.38
       objectReference: {fileID: 0}
     - target: {fileID: 467514, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4953,7 +4968,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 467514, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 8.9
+      value: -5.2
       objectReference: {fileID: 0}
     - target: {fileID: 467514, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: m_LocalRotation.x
