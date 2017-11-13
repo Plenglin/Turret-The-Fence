@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 100
-  decay: 10
+  decay: 20
 --- !u!135 &135160929601792618
 SphereCollider:
   m_ObjectHideFlags: 1
