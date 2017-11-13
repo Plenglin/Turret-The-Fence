@@ -29,7 +29,7 @@ public class PlayerWeapons : MonoBehaviour {
 			void Update ()
 			{
 				timer += Time.deltaTime;
-			if(Input.GetButton ("Fire3") && timer >= timeBetweenBullets && Time.timeScale != 0 && GunList.Count>0)
+			if(Input.GetKeyDown(KeyCode.Q) && timer >= timeBetweenBullets && Time.timeScale != 0 && GunList.Count>0)
 				{
 				timer = 0f;
 				GunList[GunIndex].SetActive (false);

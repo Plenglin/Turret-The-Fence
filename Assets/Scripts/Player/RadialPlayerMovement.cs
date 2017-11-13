@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RadialPlayerMovement : MonoBehaviour
 {
-    public float speed = 6f;            // The speed that the player will move at.
+    public float walkSpeed = 6f;            // The speed that the player will move at.
+    public float sprintSpeed = 12f;            // The speed that the player will move at.
 
+    public float staminaConsumptionRate = 0.2f;
+    public float staminaRegenRate = 0.1f;
+    public float currentStamina = 1f;
+    public Slider staminaSlider;
 
     public RadialCameraFollow radialCamera;
 
@@ -28,6 +34,9 @@ public class RadialPlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         if (!anim) anim = GetComponentInChildren<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+
+        staminaSlider.maxValue = 1;
+        staminaSlider.minValue = 0;
     }
 
 
@@ -36,6 +45,7 @@ public class RadialPlayerMovement : MonoBehaviour
         // Store the input axes.
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+        staminaSlider.value = currentStamina;
 
         // Move the player around the scene.
         Move(h, v);
@@ -47,6 +57,8 @@ public class RadialPlayerMovement : MonoBehaviour
         Animating(h, v);
     }
 
+    private bool sprinting = false;
+
 
     void Move(float h, float v)
     {
@@ -57,6 +69,19 @@ public class RadialPlayerMovement : MonoBehaviour
         // Set the movement vector based on the axis input.
         movement.Set(change.x, 0f, change.z);
 
+        if (Input.GetKeyUp(KeyCode.LeftShift) || currentStamina < 0) {
+            sprinting = false;
+        } else if (Input.GetKeyDown(KeyCode.LeftShift) && currentStamina > 0) {
+            sprinting = true;
+        }
+        
+        if (sprinting) {
+            currentStamina -= staminaConsumptionRate * Time.deltaTime;
+        } else if (currentStamina < 1f) {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+        }
+
+        float speed = sprinting ? sprintSpeed : walkSpeed;
         // Normalise the movement vector and make it proportional to the speed per second.
         movement = movement.normalized * speed * Time.deltaTime;
 
