@@ -7,7 +7,7 @@ namespace EnemySpawning {
     [System.Serializable]
     public class Wave {
 
-        public SpawnDescription[] spawns;
+        public List<SpawnDescription> spawns;
 
     }
 
