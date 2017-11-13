@@ -30,7 +30,7 @@ namespace EnemySpawning {
             foreach (SpawnDescription sp in wave.spawns) {
                 StartCoroutine(DoSpawnDescription(sp));
             }
-            yield return new WaitUntil(() => completed == wave.spawns.Length);
+            yield return new WaitUntil(() => (completed == wave.spawns.Count));
             stats.OnWaveEnd();
             yield return new WaitUntil(() => {
                 return enemies.TrueForAll((obj) => obj == null);
