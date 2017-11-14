@@ -335,7 +335,7 @@ MonoBehaviour:
   scoreValue: 100
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   drop: {fileID: 1237020577541580, guid: fe711af601ad8774993b3be6e5c9ce0f, type: 2}
-  money: 100
+  money: 50
   isDead: 0
   IsSpawner: 0
 --- !u!114 &114786065380762494
@@ -383,7 +383,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.51
-  m_Speed: 5
+  m_Speed: 6
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 90

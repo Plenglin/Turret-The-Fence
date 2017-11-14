@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3914135e2ada685468113aa6f448cdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePerSecond: 25
+  damagePerSecond: 40
   tracerObject: {fileID: 1608139320914866}
 --- !u!120 &120824073463952244
 LineRenderer:

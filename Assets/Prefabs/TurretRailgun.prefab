@@ -527,9 +527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f26f3c834c34b14493185e978970b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingDelay: 1
+  firingDelay: 3
   lineDuration: 0.1
-  damagePerShot: 25
+  damagePerShot: 50
   tracerObject: {fileID: 1751367905345926}
 --- !u!114 &114783139963394144
 MonoBehaviour:

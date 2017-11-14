@@ -246,6 +246,11 @@ MonoBehaviour:
       timeBetweenBursts: 5
       burstsOf: 4
       timeBetweenSpawns: 0.15
+    - enemy: {fileID: 1964168673362740, guid: 981b7a2204b7321419044e85f9b1ae87, type: 2}
+      bursts: 5
+      timeBetweenBursts: 5
+      burstsOf: 4
+      timeBetweenSpawns: 0.15
   - spawns:
     - enemy: {fileID: 108482, guid: 417de87641e2e80448829346d177648a, type: 2}
       bursts: 40
@@ -255,7 +260,7 @@ MonoBehaviour:
     - enemy: {fileID: 1051065619865720, guid: fc11d7e5007f2c641a62589d657531f3, type: 2}
       bursts: 4
       timeBetweenBursts: 10
-      burstsOf: 2
+      burstsOf: 3
       timeBetweenSpawns: 0.1
     - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37, type: 2}
       bursts: 10
@@ -264,15 +269,15 @@ MonoBehaviour:
       timeBetweenSpawns: 0.5
   - spawns:
     - enemy: {fileID: 1051065619865720, guid: fc11d7e5007f2c641a62589d657531f3, type: 2}
-      bursts: 5
+      bursts: 6
       timeBetweenBursts: 5
       burstsOf: 5
-      timeBetweenSpawns: 0.5
+      timeBetweenSpawns: 0.1
     - enemy: {fileID: 1964168673362740, guid: 981b7a2204b7321419044e85f9b1ae87, type: 2}
-      bursts: 5
+      bursts: 6
       timeBetweenBursts: 5
-      burstsOf: 7
-      timeBetweenSpawns: 0.2
+      burstsOf: 5
+      timeBetweenSpawns: 0.1
     - enemy: {fileID: 1557750936141108, guid: 41bf729ff863df545ad3fb2fe4bc5e37, type: 2}
       bursts: 5
       timeBetweenBursts: 5
@@ -6582,13 +6587,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turrets:
   - name: Railgun
-    cost: 300
+    cost: 250
     turret: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
   - name: Beam
-    cost: 400
+    cost: 300
     turret: {fileID: 1731520026279250, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
   - name: MLRS
-    cost: 500
+    cost: 1000
     turret: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
   dataDisplay: {fileID: 543615226}
 --- !u!114 &1935204564
