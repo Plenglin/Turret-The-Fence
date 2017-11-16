@@ -12,7 +12,7 @@ public class BeamShootingControl : MonoBehaviour {
     private int shootableMask;
     private LineRenderer tracer;
     private float lastFiring;
-    private const float firingDelay = 0.25f;
+    private const float firingDelay = 0.2f;
 
     // Use this for initialization
     void Start() {

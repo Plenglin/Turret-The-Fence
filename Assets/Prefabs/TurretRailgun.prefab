@@ -545,6 +545,7 @@ MonoBehaviour:
   maxDistance: 100
   target: {fileID: 0}
   pointingOffset: {x: 0, y: 1, z: 0}
+  ignoreObstacles: 0
 --- !u!120 &120960850248288138
 LineRenderer:
   m_ObjectHideFlags: 1
