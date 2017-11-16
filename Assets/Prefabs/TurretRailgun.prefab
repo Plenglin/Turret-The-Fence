@@ -168,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214834047752430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.8, y: 0, z: 10.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8.092838, y: 8.0928335, z: 8.092837}
   m_Children:
   - {fileID: 4095533198753886}
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f26f3c834c34b14493185e978970b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firingDelay: 3
+  firingDelay: 2.5
   lineDuration: 0.1
   damagePerShot: 50
   tracerObject: {fileID: 1751367905345926}
