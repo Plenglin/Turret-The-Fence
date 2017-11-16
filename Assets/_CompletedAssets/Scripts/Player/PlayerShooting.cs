@@ -25,7 +25,7 @@ namespace CompleteProject
         void Awake ()
         {
             // Create a layer mask for the Shootable layer.
-            shootableMask = LayerMask.GetMask ("Shootable");
+            shootableMask = LayerMask.GetMask ("Shootable", "BulletObstacle");
 
             // Set up the references.
             gunParticles = GetComponent<ParticleSystem> ();
@@ -105,8 +105,7 @@ namespace CompleteProject
                 EnemyHealth enemyHealth = shootHit.collider.GetComponent <EnemyHealth> ();
 
                 // If the EnemyHealth component exist...
-                if(enemyHealth != null)
-                {
+                if(enemyHealth != null) {
                     // ... the enemy should take damage.
                     enemyHealth.TakeDamage (damagePerShot, shootHit.point);
                 }

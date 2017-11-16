@@ -42,9 +42,9 @@ namespace EnemySpawning {
             for (int i = 0; i < sp.bursts; i++) {
                 Vector3 spawnArea = getRandomSpawnArea();
                 for (int j = 0; j < sp.burstsOf; j++) {
-                    GameObject enemy = MonoBehaviour.Instantiate(sp.enemy);
-                    enemy.transform.position = spawnArea;
+                    GameObject enemy = Instantiate(sp.enemy, spawnArea, Quaternion.identity);
                     enemies.Add(enemy);
+                    Debug.Log("Spawning a " + enemy.name + " at " + spawnArea);
                     yield return new WaitForSeconds(sp.timeBetweenSpawns);
                 }
                 yield return new WaitForSeconds(sp.timeBetweenBursts - sp.timeBetweenSpawns);
