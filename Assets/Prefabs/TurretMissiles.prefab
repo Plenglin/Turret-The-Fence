@@ -70,6 +70,8 @@ GameObject:
   - component: {fileID: 114822921203651018}
   - component: {fileID: 114271819738180944}
   - component: {fileID: 114317497447939706}
+  - component: {fileID: 65761473907691480}
+  - component: {fileID: 208502347186087200}
   m_Layer: 0
   m_Name: TurretMissiles
   m_TagString: Untagged
@@ -251,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224997254523260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.3, y: 4.2107907e-17, z: -11.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4295454663522918}
@@ -543,6 +545,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371168414406010}
   m_Mesh: {fileID: 4300002, guid: 014544f406b517e4c8b282a8a9e41116, type: 3}
+--- !u!65 &65761473907691480
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224997254523260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95655780791375832
 Animator:
   serializedVersion: 3
@@ -574,6 +588,7 @@ MonoBehaviour:
   maxDistance: -1
   target: {fileID: 0}
   pointingOffset: {x: 0, y: 0, z: 0}
+  ignoreObstacles: 1
 --- !u!114 &114317497447939706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -615,3 +630,18 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   yawOffset: 90
   pitchOffset: -30
+--- !u!208 &208502347186087200
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224997254523260}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

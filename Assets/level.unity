@@ -3899,7 +3899,7 @@ Transform:
   m_LocalScale: {x: 1, y: 10, z: 100.00012}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &1028680162
 MeshRenderer:
@@ -4225,7 +4225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 10, z: 100.00012}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &1078007553
 MeshRenderer:
@@ -6105,7 +6105,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 467514, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11444566, guid: 06a564ee786ebe542ae1166f2058b74a, type: 2}
       propertyPath: healthSlider
@@ -7505,7 +7505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.593431, z: 1.59343}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 19.794, y: 0, z: 0}
 --- !u!1 &1948277206
 GameObject:
