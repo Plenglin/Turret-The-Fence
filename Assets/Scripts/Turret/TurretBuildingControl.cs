@@ -46,8 +46,11 @@ public class TurretBuildingControl : MonoBehaviour {
             if (index < turrets.Length) {
                 if (Input.GetKeyDown(code)) {
                     currentTurret = turrets[index];
+					Destroy(ghostTurret);
                     ghostTurret = Instantiate(currentTurret.turret);
-                    ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
+					ghostTurret.GetComponent<TurretDirectionControl>().enabled = false;
+					ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
+					ghostTurret.GetComponent<Collider>().enabled = false;
                 }
                 if (Input.GetKeyUp(code)) {
                     currentTurret = null;
@@ -71,8 +74,10 @@ public class TurretBuildingControl : MonoBehaviour {
             if (Input.GetMouseButtonDown(1)) {
                 if (balance.money >= currentTurret.cost) {
                     GameObject newTurret = Instantiate(ghostTurret);
-                    newTurret.GetComponent<TurretTargetingControl>().enabled = true;
-                    balance.money -= currentTurret.cost;
+					newTurret.GetComponent<TurretDirectionControl>().enabled = true;
+					newTurret.GetComponent<TurretTargetingControl>().enabled = true;
+					newTurret.GetComponent<Collider>().enabled = true;
+					balance.money -= currentTurret.cost;
                     error = "";
                 } else {
                     error = "Error: You don't have enough money";
