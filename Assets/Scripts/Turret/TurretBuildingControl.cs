@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class TurretBuildingControl : MonoBehaviour {
@@ -48,9 +49,10 @@ public class TurretBuildingControl : MonoBehaviour {
                     currentTurret = turrets[index];
 					Destroy(ghostTurret);
                     ghostTurret = Instantiate(currentTurret.turret);
-					ghostTurret.GetComponent<TurretDirectionControl>().enabled = false;
-					ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
-					ghostTurret.GetComponent<Collider>().enabled = false;
+                    ghostTurret.GetComponent<TurretDirectionControl>().enabled = false;
+                    ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
+                    ghostTurret.GetComponent<NavMeshObstacle>().enabled = false;
+                    ghostTurret.GetComponent<Collider>().enabled = false;
                 }
                 if (Input.GetKeyUp(code)) {
                     currentTurret = null;
@@ -76,7 +78,8 @@ public class TurretBuildingControl : MonoBehaviour {
                     GameObject newTurret = Instantiate(ghostTurret);
 					newTurret.GetComponent<TurretDirectionControl>().enabled = true;
 					newTurret.GetComponent<TurretTargetingControl>().enabled = true;
-					newTurret.GetComponent<Collider>().enabled = true;
+                    newTurret.GetComponent<NavMeshObstacle>().enabled = true;
+                    newTurret.GetComponent<Collider>().enabled = true;
 					balance.money -= currentTurret.cost;
                     error = "";
                 } else {
