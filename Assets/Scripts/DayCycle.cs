@@ -10,23 +10,60 @@ public class DayCycle : MonoBehaviour {
 
     public float dayLength = 0;
     public float time = 0;
+    public bool doDaylightCycle = true;
+
+    private bool lastIsDay;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        lastIsDay = false;
+        if (time < 0.5) {
+            StartCoroutine(OnDay());
+        } else { 
+            StartCoroutine(OnNight());
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        time += Time.deltaTime / dayLength;
+        if (doDaylightCycle) {
+            time = (time + Time.deltaTime / dayLength) % 1;
+        }
         bool isDay = time < 0.5;
+        if (!lastIsDay && isDay) {
+            StartCoroutine(OnDay());
+        } else if (lastIsDay && !isDay) {
+            StartCoroutine(OnNight());
+        }
+
         foreach (SolarControl s in solars) {
             s.enabled = isDay;
         }
-        foreach (Light l in lamps) {
-            l.enabled = !isDay;
-        }
-        Vector3 rot = sun.transform.rotation.eulerAngles;
-        sun.transform.rotation.eulerAngles.Set(rot.x, time * 360, rot.y);
+        
+        sun.transform.rotation = Quaternion.Euler(time * 360, 0, 0);
+        lastIsDay = isDay;
 	}
+
+    IEnumerator OnDay() {
+        foreach (Light l in lamps) {
+            l.enabled = false;
+        }
+        yield return new WaitUntil(() => { return true; });
+    }
+
+    IEnumerator OnNight() {
+        yield return new WaitForSeconds(dayLength / 20);
+        foreach (Light l in lamps) {
+            StartCoroutine(FlickerLightOn(l));
+        }
+    }
+
+    IEnumerator FlickerLightOn(Light light) {
+        yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
+        light.enabled = true;
+        yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
+        light.enabled = false;
+        yield return new WaitForSeconds(Random.Range(0.2f, 0.5f));
+        light.enabled = true;
+    }
 }
