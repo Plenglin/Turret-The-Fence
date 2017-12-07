@@ -25,6 +25,7 @@ public class AssaultRifle : MonoBehaviour {
 
     private int shootables;
     private float lastFired = 0;
+    private bool reloading = false;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +46,13 @@ public class AssaultRifle : MonoBehaviour {
                 StartCoroutine(Reload());
             }
         }
-        ammoIndicator.text = string.Format("{0}/{1}\nAssault Rifle", bullets, clipSize);
+        string ammo;
+        if (reloading) {
+            ammo = "RELOADING";
+        } else {
+            ammo = string.Format("{0}/{1}", bullets, clipSize);
+        }
+        ammoIndicator.text = ammo + "\nAssault Rifle";
     }
 
     IEnumerator Fire() {
@@ -66,16 +73,17 @@ public class AssaultRifle : MonoBehaviour {
         muzzleFlash.enabled = true;
         tracer.enabled = true;
         yield return new WaitForSeconds(tracerDuration);
-        Debug.Log("safsadf");
         muzzleFlash.enabled = false;
         tracer.enabled = false;
     }
 
     IEnumerator Reload() {
         firingEnabled = false;
+        reloading = true;
         yield return new WaitForSeconds(reloadTime);
         bullets = clipSize;
         firingEnabled = true;
+        reloading = false;
     }
 
 }
