@@ -14,13 +14,13 @@ public class Minigun : MonoBehaviour {
     public Transform muzzleEnd;
 
     public float heat = 0;
-    public Light muzzleFlash;
+    public Light muzzleFlash, overheat;
     public LineRenderer tracer;
     public Text ammoIndicator;
     public GameObject spinner;
     public int barrels = 6;
 
-    private float maxSpinRate, currentSpinRate, spinUpRate, spinDownRate, cooldownRate, nextFire = 0;
+    private float maxSpinRate, currentSpinRate, spinUpRate, spinDownRate, cooldownRate, nextFire = 0, heatLightIntensity;
     private bool spinning = true, overheated = false;
 
     private int shootables;
@@ -32,6 +32,7 @@ public class Minigun : MonoBehaviour {
         spinUpRate = maxSpinRate / spinUpTime;
         spinDownRate = maxSpinRate / spinDownTime;
         cooldownRate = 1 / cooldownTime;
+        heatLightIntensity = overheat.intensity;
     }
 
     // Update is called once per frame
@@ -59,6 +60,7 @@ public class Minigun : MonoBehaviour {
             output = "OVERHEATED!\n" + output;
         }
         spinner.transform.Rotate(0, 0, currentSpinRate * Time.deltaTime);
+        overheat.intensity = heatLightIntensity * heat;
         if (heat >= 1) {
             heat = 1;
             overheated = true;
