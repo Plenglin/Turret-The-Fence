@@ -8495,13 +8495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d0ac3973492344e86ce56124052767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 6
-  sprintSpeed: 12
+  hindered: 0
   staminaConsumptionRate: 0.3
   staminaRegenRate: 0.1
   currentStamina: 1
   staminaSlider: {fileID: 933464557}
-  radialCamera: {fileID: 1851598989}
+  targetCamera: {fileID: 1851598981}
 --- !u!114 &1935204563
 MonoBehaviour:
   m_ObjectHideFlags: 0

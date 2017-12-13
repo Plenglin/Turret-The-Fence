@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RadialPlayerMovement : MonoBehaviour {
+public class RelativePlayerMovement : MonoBehaviour {
     public bool hindered = false;
     public const float hinderedSpeed = 2f;            
     public const float walkSpeed = 6f;            // The speed that the player will move at.
@@ -14,7 +14,7 @@ public class RadialPlayerMovement : MonoBehaviour {
     public float currentStamina = 1f;
     public Slider staminaSlider;
 
-    public RadialCameraFollow radialCamera;
+    public Camera targetCamera;
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
@@ -61,7 +61,7 @@ public class RadialPlayerMovement : MonoBehaviour {
 
     void Move(float h, float v)
     {
-        Vector3 offset = (radialCamera.center.position - this.transform.position).normalized;
+        Vector3 offset = (targetCamera.transform.position - this.transform.position).normalized;
         offset.y = 0;
         Vector3 horizontal = Vector3.Cross(offset, Vector3.up);
         Vector3 change = -v * offset + h * horizontal;
