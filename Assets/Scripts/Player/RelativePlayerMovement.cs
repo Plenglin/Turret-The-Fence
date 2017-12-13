@@ -61,7 +61,7 @@ public class RelativePlayerMovement : MonoBehaviour {
 
     void Move(float h, float v)
     {
-        Vector3 offset = (targetCamera.transform.position - this.transform.position).normalized;
+        Vector3 offset = (targetCamera.transform.position - transform.position).normalized;
         offset.y = 0;
         Vector3 horizontal = Vector3.Cross(offset, Vector3.up);
         Vector3 change = -v * offset + h * horizontal;
@@ -69,13 +69,22 @@ public class RelativePlayerMovement : MonoBehaviour {
         movement.Set(change.x, 0f, change.z);
 
         float speed;
+        bool attemptingSprint = Input.GetKey(KeyCode.LeftShift);
+        bool sprinting = attemptingSprint && currentStamina > 0;
+        if (!attemptingSprint) {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+        }
         if (hindered) {  // Hindered
             speed = hinderedSpeed;
-        } else if (Input.GetKey(KeyCode.LeftShift)) {  // Sprinting
+        } else if (sprinting) {  // Sprinting
             speed = sprintSpeed;
+            currentStamina -= staminaConsumptionRate * Time.deltaTime;
         } else {
             speed = walkSpeed;  // Walking
         }
+
+        currentStamina = Mathf.Clamp(currentStamina, 0, 1);
+        staminaSlider.value = currentStamina;
         
         // Normalise the movement vector and make it proportional to the speed per second.
         movement = movement.normalized * speed * Time.deltaTime;
