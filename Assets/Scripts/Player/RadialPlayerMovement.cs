@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RadialPlayerMovement : MonoBehaviour
-{
-    public float walkSpeed = 6f;            // The speed that the player will move at.
-    public float sprintSpeed = 12f;            // The speed that the player will move at.
+public class RadialPlayerMovement : MonoBehaviour {
+    public bool hindered = false;
+    public const float hinderedSpeed = 2f;            
+    public const float walkSpeed = 6f;            // The speed that the player will move at.
+    public const float sprintSpeed = 12f;            // The speed that the player will move at.
 
     public float staminaConsumptionRate = 0.2f;
     public float staminaRegenRate = 0.1f;
@@ -57,8 +58,6 @@ public class RadialPlayerMovement : MonoBehaviour
         Animating(h, v);
     }
 
-    private bool sprinting = false;
-
 
     void Move(float h, float v)
     {
@@ -69,21 +68,18 @@ public class RadialPlayerMovement : MonoBehaviour
         // Set the movement vector based on the axis input.
         movement.Set(change.x, 0f, change.z);
 
-        if (Input.GetKeyUp(KeyCode.LeftShift) || currentStamina < 0) {
-            sprinting = false;
-        } else if (Input.GetKeyDown(KeyCode.LeftShift) && currentStamina > 0) {
-            sprinting = true;
+        float speed;
+        if (hindered) {  // Hindered
+            speed = hinderedSpeed;
+        } else if (Input.GetKey(KeyCode.LeftShift)) {  // Sprinting
+            speed = sprintSpeed;
+        } else {
+            speed = walkSpeed;  // Walking
         }
         
-        if (sprinting) {
-            currentStamina -= staminaConsumptionRate * Time.deltaTime;
-        } else if (currentStamina < 1f) {
-            currentStamina += staminaRegenRate * Time.deltaTime;
-        }
-
-        float speed = sprinting ? sprintSpeed : walkSpeed;
         // Normalise the movement vector and make it proportional to the speed per second.
         movement = movement.normalized * speed * Time.deltaTime;
+        Debug.Log(speed);
 
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);

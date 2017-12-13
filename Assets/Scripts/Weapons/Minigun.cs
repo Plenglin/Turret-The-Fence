@@ -23,6 +23,7 @@ public class Minigun : MonoBehaviour {
     private float maxSpinRate, currentSpinRate, spinUpRate, spinDownRate, cooldownRate, nextFire = 0, heatLightIntensity;
     private bool spinning = true, overheated = false;
 
+    private RadialPlayerMovement playerMovement;
     private int shootables;
     
     // Use this for initialization
@@ -33,6 +34,8 @@ public class Minigun : MonoBehaviour {
         spinDownRate = maxSpinRate / spinDownTime;
         cooldownRate = 1 / cooldownTime;
         heatLightIntensity = overheat.intensity;
+
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<RadialPlayerMovement>();
     }
 
     // Update is called once per frame
@@ -42,8 +45,10 @@ public class Minigun : MonoBehaviour {
         spinning = firing || Input.GetButton("Fire2");
         if (spinning) {
             currentSpinRate += spinUpRate * Time.deltaTime;
+            playerMovement.hindered = true;
         } else {
             currentSpinRate = Math.Max(currentSpinRate - spinDownRate * Time.deltaTime, 0);
+            playerMovement.hindered = false;
         }
         if (currentSpinRate > maxSpinRate) {
             currentSpinRate = maxSpinRate;
