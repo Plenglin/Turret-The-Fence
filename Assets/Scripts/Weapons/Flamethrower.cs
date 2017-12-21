@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class Flamethrower : MonoBehaviour {
 
@@ -9,20 +10,38 @@ public class Flamethrower : MonoBehaviour {
 
     public int damagePerHit;
     public float burnTime = 5f;
+    public float maxRange;
+    public float minRange;
 
     public bool running = false;
     public ParticleSystem partycools;
     private float nextDamageTick = 0;
     private List<EnemyHealth> toAffect = new List<EnemyHealth>();
+    private GameObject player;
+    private Vector3 lastPlayerPos;
+    private SmoothedAverage sizeBuffer;
+
+    private void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
+        sizeBuffer = new SmoothedAverage(20, (maxRange + minRange) / 2);
+        lastPlayerPos = player.transform.position;
+    }
 
     // Update is called once per frame
     void Update() {
         running = Input.GetButton("Fire1");
         if (running) {
+            Vector3 playerPos = player.transform.position;
+            Vector3 displacement = playerPos - lastPlayerPos;
+            float projection = Vector3.Dot(displacement.normalized, player.transform.forward);
+            lastPlayerPos = playerPos;
+            float length = Mathf.Lerp(minRange, maxRange, (projection + 1) / 2);
+            sizeBuffer.push(length);
+            GetComponent<CapsuleCollider>().height = sizeBuffer.avg;
+
             partycools.Play();
             if (nextDamageTick <= Time.time) {
                 nextDamageTick = Time.time + BURN_DELAY;
-                Debug.Log("brunic");
                 foreach (EnemyHealth health in toAffect) {
                     health.TakeDamage(damagePerHit, health.gameObject.transform.position);
                     health.burning = burnTime;

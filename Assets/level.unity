@@ -11705,6 +11705,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerHit: 10
   burnTime: 5
+  maxRange: 3
+  minRange: 10
   running: 0
   partycools: {fileID: 108834599}
 --- !u!1 &1925727662
