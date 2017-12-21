@@ -88,7 +88,6 @@ public class RelativePlayerMovement : MonoBehaviour {
         
         // Normalise the movement vector and make it proportional to the speed per second.
         movement = movement.normalized * speed * Time.deltaTime;
-        Debug.Log(speed);
 
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);

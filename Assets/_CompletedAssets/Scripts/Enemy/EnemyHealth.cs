@@ -1,15 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace CompleteProject
 {
     public class EnemyHealth : MonoBehaviour
     {
+
+        public const float BURN_DELAY = 0.25f;
+
         public int startingHealth = 100;            // The amount of health the enemy starts the game with.
         public int currentHealth;                   // The current health the enemy has.
         public float sinkSpeed = 2.5f;              // The speed at which the enemy sinks through the floor when dead.
         public int scoreValue = 10;                 // The amount added to the player's score when the enemy dies.
         public AudioClip deathClip;                 // The sound to play when the enemy dies.
+        public float burning = 0;
+        private float nextBurnTick = 0;
 
         public GameObject drop;
 
@@ -24,6 +30,10 @@ namespace CompleteProject
         bool isSinking;  
 		public bool IsSpawner = false;// Whether the enemy has started sinking through the floor.
         private bool addedMoney = false;
+
+        void Start() {
+            StartCoroutine("Burn");
+        }
 
         void Awake ()
         {
@@ -41,11 +51,29 @@ namespace CompleteProject
 
         void Update ()
         {
+            if (burning > 0 && Time.time >= nextBurnTick) {
+                TakeDamage(2, transform.position);
+                nextBurnTick = Time.time + BURN_DELAY;
+                burning -= BURN_DELAY;
+                Debug.Log("brunig");
+            }
+
             // If the enemy should be sinking...
-            if(isSinking)
+            if (isSinking)
             {
                 // ... move the enemy down by the sinkSpeed per second.
                 transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+            }
+        }
+
+        IEnumerable Burn() {
+            while (true) {
+                Debug.Log(burning);
+                if (burning >= 0) {
+                    TakeDamage(2, transform.position);
+                    Debug.Log("fdssnig");
+                }
+                yield return new WaitForSeconds(0.75f);
             }
         }
 
