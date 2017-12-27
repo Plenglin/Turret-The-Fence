@@ -30,6 +30,7 @@ namespace CompleteProject
         bool isSinking;  
 		public bool IsSpawner = false;// Whether the enemy has started sinking through the floor.
         private bool addedMoney = false;
+        public ParticleSystem fireParticles;
 
         void Start() {
             StartCoroutine("Burn");
@@ -55,7 +56,7 @@ namespace CompleteProject
                 TakeDamage(2, transform.position);
                 nextBurnTick = Time.time + BURN_DELAY;
                 burning -= BURN_DELAY;
-                Debug.Log("brunig");
+                fireParticles.Play();
             }
 
             // If the enemy should be sinking...
