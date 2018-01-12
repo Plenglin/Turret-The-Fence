@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-public class Flamethrower : MonoBehaviour {
+public class FlamethrowerMuzzle : MonoBehaviour {
 
     public const float BURN_DELAY = 0.25f;
 
