@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TurretTheFence.StatusEffect {
+namespace TurretTheFence.Effect {
 
     public class StatusEffectManager : MonoBehaviour {
 
         public List<StatusEffect> statuses = new List<StatusEffect>();
 
-        void Update() {
+        private void Update() {
             foreach (StatusEffect fx in statuses) {
                 switch (fx.state) {
                     case StatusState.PRE_START:
@@ -26,12 +26,24 @@ namespace TurretTheFence.StatusEffect {
             statuses.RemoveAll((x) => x.state == StatusState.ENDED);
         }
 
-        void Apply(StatusEffect status) {
-            statuses.Add(status);
+        /// <summary>
+        /// Applies a status effect to this object. If there already exists one with the same tag, increments that stack and refreshes
+        /// the cooldown.
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="stacks"></param>
+        public void Apply(StatusEffect status, int stacks) {
+            StatusEffect found = statuses.Find(x => x.tag == status.tag);
+            if (found != null) {
+                found.stacks = Mathf.Max(found.stacks + stacks, found.maxStacks);
+                found.Refresh();
+            } else {
+                statuses.Add(status);
+            }
         }
 
-        void Refresh(string tag) {
-            statuses.FindAll(x => x.tag == tag).ForEach(x => x.Refresh());
+        public void Apply(StatusEffect status) {
+            Apply(status, 1);
         }
 
     }

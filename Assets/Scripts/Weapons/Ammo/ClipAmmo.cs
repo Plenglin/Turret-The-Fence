@@ -7,8 +7,9 @@ namespace TurretTheFence.Weapons.Ammo {
 
     public class ClipAmmo : MonoBehaviour, IAmmoManager {
 
-        public int clipSize;
-        public int bullets;
+        public int clipSize, bullets;
+
+        public string displayName;
 
         public float reloadTime;
         public bool reloading;
@@ -48,7 +49,7 @@ namespace TurretTheFence.Weapons.Ammo {
             } else {
                 output = string.Format("{0}/{1}", bullets, clipSize);
             }
-            return output + "\nAssault Rifle";
+            return output + "\n" + displayName;
         }
 
     }

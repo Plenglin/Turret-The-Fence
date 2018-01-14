@@ -3,36 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using TurretTheFence.Effect;
 using System;
 
 namespace TurretTheFence.Weapons.Firing {
 
     public class FlamethrowerMuzzle : MonoBehaviour, IFiringManager {
-        public const float BURN_DELAY = 0.25f;
-
-        public int damagePerHit;
+        public int damagePerHit, damagePerDecisecond;
         public float burnTime = 5f;
-        public float maxRange;
-        public float minRange;
+        public float minRange, maxRange;
 
-        public ParticleSystem partycools;
+        public GameObject burningEffect;
+
+        private ParticleSystem partycools;
         private float nextDamageTick = 0;
-        private List<EnemyHealth> toAffect = new List<EnemyHealth>();
+        private List<GameObject> toAffect = new List<GameObject>();
         private GameObject player;
         private Vector3 lastPlayerPos;
         private SmoothedAverage sizeBuffer;
         private CapsuleCollider areaOfEffect;
 
         private void Start() {
-
-        }
-
-        private void Update() {
-
+            player = GameObject.FindGameObjectWithTag("Player");
+            sizeBuffer = new SmoothedAverage(20, (maxRange + minRange) / 2);
+            lastPlayerPos = player.transform.position;
+            areaOfEffect = GetComponent<CapsuleCollider>();
+            partycools = GetComponent<ParticleSystem>();
         }
 
         public void OnFire() {
-            throw new NotImplementedException();
+            // Vector projection of velocity onto forward, for doppler effect
+            Debug.Log("flamethrower firing");
+            Vector3 playerPos = player.transform.position;
+            Vector3 displacement = playerPos - lastPlayerPos;
+            float projection = Vector3.Dot(displacement.normalized, player.transform.forward);
+            lastPlayerPos = playerPos;
+            float length = Mathf.Lerp(minRange, maxRange, (projection + 1) / 2);
+            sizeBuffer.push(length);
+
+            UpdateCollider(sizeBuffer.avg);
+
+            partycools.Play();
+            foreach (GameObject enemy in toAffect) {
+                EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+                StatusEffectManager effects = enemy.GetComponent<StatusEffectManager>();
+                health.TakeDamage(damagePerHit, health.gameObject.transform.position);
+                effects.Apply(new BurningEffect(damagePerDecisecond, burnTime, burningEffect));
+            }
         }
 
         private void UpdateCollider(float size) {
@@ -43,15 +60,12 @@ namespace TurretTheFence.Weapons.Firing {
         private void OnTriggerEnter(Collider other) {
             EnemyHealth health = other.gameObject.GetComponent<EnemyHealth>();
             if (health != null) {
-                toAffect.Add(health);
+                toAffect.Add(other.gameObject);
             }
         }
 
         private void OnTriggerExit(Collider other) {
-            EnemyHealth health = other.gameObject.GetComponent<EnemyHealth>();
-            if (health != null) {
-                toAffect.Remove(health);
-            }
+            toAffect.Remove(other.gameObject);
         }
     }
 

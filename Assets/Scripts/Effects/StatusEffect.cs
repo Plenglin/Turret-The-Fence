@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace TurretTheFence.StatusEffect {
+namespace TurretTheFence.Effect {
     public abstract class StatusEffect {
 
         public StatusState state = StatusState.PRE_START;
         public GameObject receiver;
         public string tag;
+        public readonly int maxStacks = 1;
+        
+        public int stacks = 1;
 
-        public StatusEffect(string tag) {
+        private float duration, endTime;
+
+        public StatusEffect(string tag, float duration) {
             this.tag = tag;
+            this.duration = duration;
         }
 
         internal void Start(GameObject receiver) {
             this.receiver = receiver;
             state = StatusState.ACTIVE;
+            Refresh();
             OnStart();
         }
 
@@ -26,10 +33,10 @@ namespace TurretTheFence.StatusEffect {
          * </summary>
          * <returns>
          * If we should remove the effect
-         * </returns>         * 
+         * </returns> 
          */
         internal bool Loop() {
-            return OnLoop();
+            return OnLoop() || Time.time >= endTime;
         }
 
         internal void End() {
@@ -37,11 +44,11 @@ namespace TurretTheFence.StatusEffect {
             state = StatusState.ENDED;
         }
 
-        internal void Refresh() {
-
+        public void Refresh() {
+            endTime = Time.time + duration;
         }
 
-        public abstract bool OnStart();
+        protected abstract void OnStart();
 
         /**
          * <summary>
@@ -51,37 +58,39 @@ namespace TurretTheFence.StatusEffect {
          * If we should remove the effect
          * </returns>
          */
-        public abstract bool OnLoop();
+        protected abstract bool OnLoop();
 
-        public abstract void OnEnd();
-
-    }
-
-    public abstract class TimedStatusEffect : StatusEffect {
-
-        private float duration, endTime;
-
-        public TimedStatusEffect(float duration) {
-            this.duration = duration;
-        }
-
-        new void Start(GameObject receiver) {
-            Refresh();
-            base.Start(receiver);
-        }
-
-        new bool Loop() {
-            return base.Loop() || Time.time >= endTime;
-        }
-
-        new void Refresh() {
-            endTime = Time.time + duration;
-        }
+        protected abstract void OnEnd();
 
     }
 
     public enum StatusState {
         PRE_START, ACTIVE, ENDED
+    }
+
+    public abstract class TickingStatusEffect : StatusEffect {
+
+        private float tickDelay, nextTick;
+
+        public TickingStatusEffect(string tag, float tickDelay, float duration) : base(tag, duration) {
+            this.tickDelay = tickDelay;
+        }
+
+        internal new void Start(GameObject receiver) {
+            base.Start(receiver);
+            nextTick = Time.time + tickDelay;
+        }
+
+        protected override bool OnLoop() {
+            if (Time.time >= nextTick) {
+                nextTick += tickDelay;
+                OnTick();
+            }
+            return false;
+        }
+
+        protected abstract void OnTick();
+        
     }
 
 }
