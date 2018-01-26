@@ -12,7 +12,7 @@ namespace CompleteProject
         NavMeshAgent nav;               // Reference to the nav mesh agent.
 
 
-        void Awake ()
+        private void Awake ()
         {
             // Set up the references.
             player = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -22,7 +22,7 @@ namespace CompleteProject
         }
 
 
-        void Update ()
+        private void Update ()
         {
             // If the enemy and the player have health left...
             if(enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)

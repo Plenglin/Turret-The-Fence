@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils {
+namespace TurretTheFence.Utils {
     public class SmoothedAverage {
 
         private float[] items;
@@ -45,6 +45,24 @@ namespace Utils {
 
     }
 
+    public class PeriodicDelayer {
+
+        private float nextEvent, delay;
+
+        public PeriodicDelayer(float delay) {
+            this.delay = delay;
+        }
+
+        public void Try(Action func) {
+            if (Time.time >= nextEvent) {
+                nextEvent = Time.time + delay;
+                func.Invoke();
+            }
+        }
+
+    }
+
+
     [System.Serializable]
     public class WeightedLootTable {
 
@@ -79,12 +97,11 @@ namespace Utils {
         public GameObject loot;
         public int weight = 1;
 
-        public LootTableEntry() {}
+        public LootTableEntry() { }
 
         public LootTableEntry(GameObject loot, int weight) {
             this.loot = loot;
             this.weight = weight;
         }
     }
-    
 }

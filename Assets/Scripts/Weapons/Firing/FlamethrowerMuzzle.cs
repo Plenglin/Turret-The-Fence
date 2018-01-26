@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils;
 using TurretTheFence.Effect;
 using System;
+using TurretTheFence.Utils;
 
 namespace TurretTheFence.Weapons.Firing {
 
@@ -23,7 +23,7 @@ namespace TurretTheFence.Weapons.Firing {
         private SmoothedAverage sizeBuffer;
         private CapsuleCollider areaOfEffect;
 
-        private void Start() {
+        private void Awake() {
             player = GameObject.FindGameObjectWithTag("Player");
             sizeBuffer = new SmoothedAverage(20, (maxRange + minRange) / 2);
             lastPlayerPos = player.transform.position;

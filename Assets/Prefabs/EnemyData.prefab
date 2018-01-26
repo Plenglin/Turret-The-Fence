@@ -19,8 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4801451448474502}
-  - component: {fileID: 114776597508685444}
   - component: {fileID: 114155312438621284}
+  - component: {fileID: 114935897726964350}
+  - component: {fileID: 136402389336987424}
   m_Layer: 0
   m_Name: EnemyData
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535b3e0536dc38148b191ce9e3386e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114776597508685444
+--- !u!114 &114935897726964350
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,17 +61,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1194232372869232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa10cc87aff30c04dbe0aa648f5b6adc, type: 3}
+  m_Script: {fileID: 11500000, guid: ee347aa6158af4ec98ac491fbf760d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  sinkSpeed: 2.5
-  scoreValue: 10
-  deathClip: {fileID: 0}
-  burning: 0
-  drop: {fileID: 0}
-  money: 10
-  isDead: 0
-  IsSpawner: 0
-  fireParticles: {fileID: 0}
+  maxHealth: 0
+  health: 0
+  money: 0
+  loot:
+    table:
+    - loot: {fileID: 1237020577541580, guid: fe711af601ad8774993b3be6e5c9ce0f, type: 2}
+      weight: 1
+--- !u!136 &136402389336987424
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194232372869232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
