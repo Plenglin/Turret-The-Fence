@@ -61,10 +61,10 @@ public class RelativePlayerMovement : MonoBehaviour {
 
     void Move(float h, float v)
     {
-        Vector3 offset = (targetCamera.transform.position - transform.position).normalized;
-        offset.y = 0;
-        Vector3 horizontal = Vector3.Cross(offset, Vector3.up);
-        Vector3 change = -v * offset + h * horizontal;
+        Vector3 yAxis = targetCamera.transform.forward;
+        yAxis.y = 0;
+        Vector3 xAxis = Vector3.Cross(yAxis, Vector3.up);
+        Vector3 change = v * yAxis.normalized - h * xAxis.normalized;
         // Set the movement vector based on the axis input.
         movement.Set(change.x, 0f, change.z);
 
@@ -146,6 +146,6 @@ public class RelativePlayerMovement : MonoBehaviour {
         bool walking = h != 0f || v != 0f;
 
         // Tell the animator whether or not the player is walking.
-        anim.SetBool("IsWalking", walking);
+        //anim.SetBool("IsWalking", walking);
     }
 }
