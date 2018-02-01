@@ -33,7 +33,6 @@ namespace TurretTheFence.Weapons.Firing {
 
         public void OnFire() {
             // Vector projection of velocity onto forward, for doppler effect
-            Debug.Log("flamethrower firing");
             Vector3 playerPos = player.transform.position;
             Vector3 displacement = playerPos - lastPlayerPos;
             float projection = Vector3.Dot(displacement.normalized, player.transform.forward);

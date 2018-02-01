@@ -228,7 +228,7 @@ ModelImporter:
     - serializedVersion: 16
       name: WalkCycle
       takeName: Take 001
-      firstFrame: 25
+      firstFrame: 26
       lastFrame: 48
       wrapMode: 0
       orientationOffsetY: 0
