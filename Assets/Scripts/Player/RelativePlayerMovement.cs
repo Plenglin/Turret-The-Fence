@@ -52,10 +52,10 @@ public class RelativePlayerMovement : MonoBehaviour {
         Move(h, v);
 
         // Turn the player to face the mouse cursor.
-        Turning();
+        //Turning();
 
         // Animate the player.
-        Animating(h, v);
+        //Animating(h, v);
     }
 
 
@@ -93,7 +93,7 @@ public class RelativePlayerMovement : MonoBehaviour {
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
-
+    /*
     void Turning()
     {
 #if !MOBILE_INPUT
@@ -147,5 +147,5 @@ public class RelativePlayerMovement : MonoBehaviour {
 
         // Tell the animator whether or not the player is walking.
         //anim.SetBool("IsWalking", walking);
-    }
+    }*/
 }

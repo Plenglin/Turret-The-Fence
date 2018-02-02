@@ -8,8 +8,7 @@ namespace TurretTheFence.Weapons.Firing {
 
     public class BulletMuzzle : MonoBehaviour, IFiringManager {
 
-        public float accuracy;
-        public float tracerDuration;
+        public float accuracy, tracerDuration;
         public int damagePerShot;
         public Light muzzleFlash;
 
@@ -27,10 +26,12 @@ namespace TurretTheFence.Weapons.Firing {
         private IEnumerator DoFire() {
             RaycastHit hit;
             // First rotate some degrees up, then rotate around forward
-            //Vector3 direction = Quaternion.AngleAxis(Random.Range(0, 360), muzzleEnd.forward) * (Quaternion.AngleAxis(Random.Range(0, accuracy), muzzleEnd.right) * muzzleEnd.forward);
+            float theta = UnityEngine.Random.Range(0, 360);
+            float rad = UnityEngine.Random.Range(0, accuracy);
+            Vector3 direction = Quaternion.AngleAxis(theta, transform.forward) * (Quaternion.AngleAxis(rad, transform.right) * transform.forward);
 
             // Rotate a random amount sideways
-            Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
+            //Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
             Ray ray = new Ray(transform.position, direction);
             if (Physics.Raycast(ray, out hit, 1000f, shootables)) {
                 EnemyHealth health = hit.collider.gameObject.GetComponent<EnemyHealth>();
