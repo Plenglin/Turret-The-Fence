@@ -54,7 +54,7 @@ namespace TurretTheFence.Weapons.Firing {
 
         private void UpdateCollider(float size) {
             areaOfEffect.height = size;
-            areaOfEffect.center = new Vector3(0, 0, size / 2 + 1);
+            areaOfEffect.center = new Vector3(0, 0, size / 2);
         }
 
         private void OnTriggerEnter(Collider other) {
