@@ -15,33 +15,19 @@ namespace TurretTheFence.Weapons.Firing {
         private LineRenderer tracer;
 
         private int shootables;
+        private Transform player;
 
-        // Use this for initialization
-        void Start() {
+        private void Awake() {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
             tracer = GetComponent<LineRenderer>();
             shootables = LayerMask.GetMask("Shootable", "BulletObstacle");
-            Debug.Log(muzzleFlash);
         }
 
-        private IEnumerator DoFire() {
-            RaycastHit hit;
-            // First rotate some degrees up, then rotate around forward
-            float theta = UnityEngine.Random.Range(0, 360);
-            float rad = UnityEngine.Random.Range(0, accuracy);
-            Vector3 direction = Quaternion.AngleAxis(theta, transform.forward) * (Quaternion.AngleAxis(rad, transform.right) * transform.forward);
+        private void Update() {
+            tracer.SetPosition(0, transform.position);
+        }
 
-            // Rotate a random amount sideways
-            //Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
-            Ray ray = new Ray(transform.position, direction);
-            if (Physics.Raycast(ray, out hit, 1000f, shootables)) {
-                EnemyHealth health = hit.collider.gameObject.GetComponent<EnemyHealth>();
-                tracer.SetPosition(0, transform.position);
-                tracer.SetPosition(1, hit.point);
-                if (health != null) {
-                    health.TakeDamage(damagePerShot, hit.point);
-                }
-            }
-
+        private IEnumerator FinishFire() {
             muzzleFlash.enabled = true;
             tracer.enabled = true;
             yield return new WaitForSeconds(tracerDuration);
@@ -49,8 +35,26 @@ namespace TurretTheFence.Weapons.Firing {
             tracer.enabled = false;
         }
 
-        public void OnFire() {
-            StartCoroutine(DoFire());
+        public bool OnFire() {
+            RaycastHit hit;
+            // First rotate some degrees up, then rotate around forward
+            float theta = UnityEngine.Random.Range(0, 360);
+            float rad = UnityEngine.Random.Range(0, accuracy);
+            Vector3 direction = Quaternion.AngleAxis(theta, transform.forward) * (Quaternion.AngleAxis(rad, transform.right) * player.forward);
+
+            // Rotate a random amount sideways
+            //Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
+            Ray ray = new Ray(player.position, direction);
+            if (Physics.Raycast(ray, out hit, 100f, shootables)) {
+                EnemyHealth health = hit.collider.gameObject.GetComponent<EnemyHealth>();
+                tracer.SetPosition(1, hit.point);
+                if (health != null) {
+                    health.TakeDamage(damagePerShot, hit.point);
+                }
+                StartCoroutine(FinishFire());
+                return true;
+            }
+            return false;
         }
     }
 

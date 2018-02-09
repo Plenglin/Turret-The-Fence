@@ -31,7 +31,7 @@ namespace TurretTheFence.Weapons.Firing {
             partycools = GetComponent<ParticleSystem>();
         }
 
-        public void OnFire() {
+        public bool OnFire() {
             // Vector projection of velocity onto forward, for doppler effect
             Vector3 playerPos = player.transform.position;
             Vector3 displacement = playerPos - lastPlayerPos;
@@ -49,6 +49,7 @@ namespace TurretTheFence.Weapons.Firing {
                 health.TakeDamage(damagePerHit, health.gameObject.transform.position);
                 effects.Apply(new BurningEffect(damagePerDecisecond, burnTime, burningEffect));
             }
+            return true;
         }
 
         private void UpdateCollider(float size) {

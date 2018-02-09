@@ -5,7 +5,7 @@ using UnityEngine;
 namespace TurretTheFence.Weapons.Firing {
     public interface IFiringManager {
 
-        void OnFire();
+        bool OnFire();
 
     }
 }

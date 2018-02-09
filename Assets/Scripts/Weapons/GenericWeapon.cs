@@ -27,8 +27,10 @@ namespace TurretTheFence.Weapons {
 
         private void FixedUpdate() {
             if (Input.GetButton("Fire1") && Time.time >= lastFired + fireDelay && ammo.CanFire()) {
-                ammo.OnFire();
-                firing.OnFire();
+                bool consumeAmmo = firing.OnFire();
+                if (consumeAmmo) {
+                    ammo.OnFire();
+                }
                 lastFired = Time.time;
             }
             if (Input.GetKeyDown("r") && ammo.CanReload()) {
