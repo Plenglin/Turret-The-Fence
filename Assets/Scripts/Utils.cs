@@ -4,6 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace TurretTheFence.Utils {
+
+    public class Constants {
+
+        public static Dictionary<KeyCode, int> keyToNumber = new Dictionary<KeyCode, int>();
+
+        static Constants() {
+            keyToNumber.Add(KeyCode.Alpha1, 1);
+            keyToNumber.Add(KeyCode.Alpha2, 2);
+            keyToNumber.Add(KeyCode.Alpha3, 3);
+            keyToNumber.Add(KeyCode.Alpha4, 4);
+            keyToNumber.Add(KeyCode.Alpha5, 5);
+            keyToNumber.Add(KeyCode.Alpha6, 6);
+            keyToNumber.Add(KeyCode.Alpha7, 7);
+            keyToNumber.Add(KeyCode.Alpha8, 8);
+            keyToNumber.Add(KeyCode.Alpha9, 9);
+            keyToNumber.Add(KeyCode.Alpha0, 10);
+        }
+
+    }
+
     public class SmoothedAverage {
 
         private float[] items;

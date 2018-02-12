@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TurretTheFence.Utils;
 using UnityEngine;
 
 namespace TurretTheFence.Player {
@@ -32,6 +33,12 @@ namespace TurretTheFence.Player {
                 SwitchTo((index + 1 + count) % count);
             } else if (scroll < 0) {
                 SwitchTo((index + 1 + count) % count);
+            }
+            foreach (KeyValuePair<KeyCode, int> p in Constants.keyToNumber) {
+                if (Input.GetKeyDown(p.Key) && p.Value <= count) {
+                    SwitchTo(p.Value - 1);
+                    break;
+                }
             }
         }
 
