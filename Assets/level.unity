@@ -8930,7 +8930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95422644a900848b33b6bacfda8c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accuracy: 2
+  accuracy: 1
   tracerDuration: 0.02
   damagePerShot: 15
   muzzleFlash: {fileID: 1254538608}
@@ -10241,7 +10241,6 @@ GameObject:
   - component: {fileID: 1503597082}
   - component: {fileID: 1503597081}
   - component: {fileID: 1503597080}
-  - component: {fileID: 1503597079}
   - component: {fileID: 1503597083}
   - component: {fileID: 1503597084}
   m_Layer: 13
@@ -10264,13 +10263,6 @@ Transform:
   m_Father: {fileID: 1924272290}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1503597079
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1503597077}
-  m_Enabled: 1
 --- !u!92 &1503597080
 Behaviour:
   m_ObjectHideFlags: 0
@@ -12393,7 +12385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1906572824
 Transform:
   m_ObjectHideFlags: 0
@@ -12546,12 +12538,12 @@ GameObject:
   - component: {fileID: 1935204568}
   - component: {fileID: 1935204567}
   - component: {fileID: 1935204566}
-  - component: {fileID: 1935204565}
   - component: {fileID: 1935204562}
   - component: {fileID: 1935204563}
   - component: {fileID: 1935204564}
   - component: {fileID: 1935204571}
   - component: {fileID: 1935204570}
+  - component: {fileID: 1935204565}
   m_Layer: 13
   m_Name: ThePlayerController
   m_TagString: Player
@@ -12582,7 +12574,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935204561}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8913d954046173e4e85c498d5a090592, type: 3}
   m_Name: 
@@ -12614,20 +12606,18 @@ MonoBehaviour:
 --- !u!114 &1935204565
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114423076419905714, guid: 06a564ee786ebe542ae1166f2058b74a,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1935204561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa377704fa4fec74c939d3e27735c0a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 24084c6293fdb2e4ca2c89a6c501a335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunList:
+  guns:
+  - {fileID: 422149678}
   - {fileID: 1906572823}
   - {fileID: 2020267003}
-  - {fileID: 422149678}
-  timeBetweenBullets: 0.25
 --- !u!82 &1935204566
 AudioSource:
   m_ObjectHideFlags: 0

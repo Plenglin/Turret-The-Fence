@@ -24,7 +24,7 @@ namespace TurretTheFence.Player {
             //yRot = yRot + Input.GetAxis("Mouse Y") * sensitivity;
             //Logger.
 
-            transform.rotation = Quaternion.identity * Quaternion.Euler(-yRot, xRot, 0);
+            transform.rotation = Quaternion.Euler(-yRot, xRot, 0);
         }
     }
 }
