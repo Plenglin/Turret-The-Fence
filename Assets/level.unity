@@ -8471,7 +8471,7 @@ GameObject:
   - component: {fileID: 1139190137}
   - component: {fileID: 1139190136}
   m_Layer: 5
-  m_Name: HUDCanvas
+  m_Name: FPHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12454,7 +12454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1906572824
 Transform:
   m_ObjectHideFlags: 0
@@ -12614,7 +12614,7 @@ GameObject:
   - component: {fileID: 1935204570}
   - component: {fileID: 1935204565}
   m_Layer: 13
-  m_Name: ThePlayerController
+  m_Name: FPPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12683,10 +12683,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24084c6293fdb2e4ca2c89a6c501a335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guns:
-  - {fileID: 422149678}
-  - {fileID: 1906572823}
-  - {fileID: 2020267003}
+  weaponMode:
+    guns:
+    - {fileID: 422149678}
+    - {fileID: 1906572823}
+    - {fileID: 2020267003}
+    index: 0
 --- !u!82 &1935204566
 AudioSource:
   m_ObjectHideFlags: 0
