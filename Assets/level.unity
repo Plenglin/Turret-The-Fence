@@ -5551,8 +5551,8 @@ GameObject:
   - component: {fileID: 543615227}
   - component: {fileID: 543615226}
   m_Layer: 5
-  m_Name: TurretDataText
-  m_TagString: Untagged
+  m_Name: InventoryText
+  m_TagString: InventoryIndicator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12679,7 +12679,6 @@ MonoBehaviour:
   - name: MLRS
     cost: 1000
     turret: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
-  dataDisplay: {fileID: 543615226}
 --- !u!114 &1935204564
 MonoBehaviour:
   m_ObjectHideFlags: 0

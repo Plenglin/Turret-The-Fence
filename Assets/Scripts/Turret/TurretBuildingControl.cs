@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TurretBuildingControl : MonoBehaviour {
 
     public TurretType[] turrets;
-    public Text dataDisplay;
+    private Text dataDisplay;
 
     private GameObject ghostTurret;
     private int floorMask;
@@ -17,8 +17,12 @@ public class TurretBuildingControl : MonoBehaviour {
     private string error;
     private MoneyControl balance;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        dataDisplay = GameObject.FindGameObjectWithTag("AmmoIndicator").GetComponent<Text>();
+    }
+
+    // Use this for initialization
+    void Start () {
 
         player = GameObject.FindGameObjectWithTag("Player");
         balance = player.GetComponent<MoneyControl>();

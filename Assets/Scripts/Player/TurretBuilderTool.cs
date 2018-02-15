@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TurretTheFence.Player;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace TurretTheFence.Player {
     public class TurretBuilderTool : MonoBehaviour {
@@ -12,8 +13,10 @@ namespace TurretTheFence.Player {
         private int floorMask;
         private TurretMode turretMode;
         private TurretType currentTurret;
+        private Text dataDisplay;
 
         private void Awake() {
+            dataDisplay = GameObject.FindGameObjectWithTag("AmmoIndicator").GetComponent<Text>();
             player = GameObject.FindGameObjectWithTag("Player");
             turretMode = player.GetComponent<WeaponSwitcher>().turretMode;
             balance = player.GetComponent<MoneyControl>();
@@ -57,6 +60,7 @@ namespace TurretTheFence.Player {
                     balance.money -= currentTurret.cost;
                 }
             }
+            dataDisplay.text = string.Format("${0}\n{1}", currentTurret.cost, currentTurret.name);
         }
 
     }

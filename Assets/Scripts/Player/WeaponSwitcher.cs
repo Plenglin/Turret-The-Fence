@@ -14,6 +14,7 @@ namespace TurretTheFence.Player {
         private Mode[] modeCycle;
         private int cycleIndex = 0;
         private GameObject currentWeapon;
+        private Text dataDisplay;
 
         public Mode currentMode {
             get { return modeCycle[cycleIndex]; }
@@ -21,12 +22,15 @@ namespace TurretTheFence.Player {
 
         private void Awake() {
             modeCycle = new Mode[] { weaponMode, turretMode };
+            dataDisplay = GameObject.FindGameObjectWithTag("InventoryIndicator").GetComponent<Text>();
         }
 
         void Start() {
             foreach (Mode m in modeCycle) {
                 m.OnStart();
+                m.OnDisable();
             }
+            currentMode.OnEnable();
         }
 
         public void CycleWeaponMode() {
@@ -51,6 +55,7 @@ namespace TurretTheFence.Player {
             if (Input.GetKeyDown(KeyCode.Tab)) {
                 CycleWeaponMode();
             }
+            dataDisplay.text = currentMode.GetInventoryDisplay();
         }
 
     }
@@ -61,6 +66,7 @@ namespace TurretTheFence.Player {
         void OnDisable();
         void OnSwitchIndex(int index);
         void OnScrollIndex(int direction);
+        string GetInventoryDisplay();
     }
 
     [System.Serializable]
@@ -97,6 +103,15 @@ namespace TurretTheFence.Player {
             int count = guns.Capacity;
             SwitchTo((index + direction + count) % count);
         }
+
+        public string GetInventoryDisplay() {
+            string output = "Weapons\n";
+            /*for (int i = 0; i < guns.Length; i++) {
+                GameObject gun = guns[i];
+                //output += string.Format("{0}. {1} (${2})\n", i + 1, turr.name, turr.cost);
+            }*/
+            return output;
+        }
     }
 
     [System.Serializable]
@@ -116,8 +131,8 @@ namespace TurretTheFence.Player {
         }
 
         public void OnStart() {
-            OnDisable();
             SetIndex(0);
+            OnDisable();
         }
 
         public void OnEnable() {
@@ -136,6 +151,15 @@ namespace TurretTheFence.Player {
 
         public void OnScrollIndex(int direction) {
             SetIndex((index + direction + turrets.Length) % turrets.Length);
+        }
+
+        public string GetInventoryDisplay() {
+            string output = "Turrets\n";
+            for (int i = 0; i < turrets.Length; i++) {
+                TurretType turr = turrets[i];
+                output += string.Format("{0}. {1} (${2})\n", i + 1, turr.name, turr.cost);
+            }
+            return output;
         }
     }
 
