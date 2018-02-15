@@ -3,18 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TurretTheFence.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TurretTheFence.Player {
 
     public class WeaponSwitcher : MonoBehaviour {
 
         public WeaponMode weaponMode = new WeaponMode();
+        public TurretMode turretMode = new TurretMode();
         private Mode[] modeCycle;
         private int cycleIndex = 0;
         private GameObject currentWeapon;
 
+        public Mode currentMode {
+            get { return modeCycle[cycleIndex]; }
+        }
+
         private void Awake() {
-            modeCycle = new Mode[] { weaponMode };
+            modeCycle = new Mode[] { weaponMode, turretMode };
         }
 
         void Start() {
@@ -24,20 +30,21 @@ namespace TurretTheFence.Player {
         }
 
         public void CycleWeaponMode() {
+            currentMode.OnDisable();
             cycleIndex = (cycleIndex + 1) % modeCycle.Length;
+            currentMode.OnEnable();
         }
 
         void Update() {
             float scroll = Input.GetAxis("Mouse ScrollWheel");
-            Mode current = modeCycle[cycleIndex];
             if (scroll > 0) {
-                current.OnScrollIndex(-1);
+                currentMode.OnScrollIndex(-1);
             } else if (scroll < 0) {
-                current.OnScrollIndex(1);
+                currentMode.OnScrollIndex(1);
             }
             foreach (KeyValuePair<KeyCode, int> p in Constants.keyToNumber) {
                 if (Input.GetKeyDown(p.Key)) {
-                    current.OnSwitchIndex(p.Value - 1);
+                    currentMode.OnSwitchIndex(p.Value - 1);
                     break;
                 }
             }
@@ -48,7 +55,7 @@ namespace TurretTheFence.Player {
 
     }
 
-    interface Mode {
+    public interface Mode {
         void OnStart();
         void OnEnable();
         void OnDisable();
@@ -64,7 +71,6 @@ namespace TurretTheFence.Player {
 
         public void OnStart() {
             OnDisable();
-            OnEnable();
         }
 
         public void OnEnable() {
@@ -90,6 +96,46 @@ namespace TurretTheFence.Player {
         public void OnScrollIndex(int direction) {
             int count = guns.Capacity;
             SwitchTo((index + direction + count) % count);
+        }
+    }
+
+    [System.Serializable]
+    public class TurretMode : Mode {
+        public TurretType[] turrets;
+        public Text dataDisplay;
+        public TurretBuilderTool tool;
+        private int index;
+
+        private void SetIndex(int index) {
+            this.index = index;
+            tool.OnTurretChange(GetTurret());
+        }
+
+        public TurretType GetTurret() {
+            return turrets[index];
+        }
+
+        public void OnStart() {
+            OnDisable();
+            SetIndex(0);
+        }
+
+        public void OnEnable() {
+            tool.gameObject.SetActive(true);
+        }
+
+        public void OnDisable() {
+            tool.gameObject.SetActive(false);
+        }
+
+        public void OnSwitchIndex(int index) {
+            if (index < turrets.Length) {
+                SetIndex(index);
+            }
+        }
+
+        public void OnScrollIndex(int direction) {
+            SetIndex((index + direction + turrets.Length) % turrets.Length);
         }
     }
 
