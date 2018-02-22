@@ -74,7 +74,10 @@ public class HomingMissile : MonoBehaviour {
         }
         foreach (Collider collider in explosion.touching) {
             if (collider != null) {
-                collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(splashDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+                EnemyHealth hp = collider.gameObject.GetComponent<EnemyHealth>();
+                if (hp != null) {
+                    hp.TakeDamage(splashDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+                }
             }
         }
         stopped = true;

@@ -44,4 +44,11 @@ namespace TurretTheFence.Weapons {
         }
     }
 
+    [System.Serializable]
+    public class WeaponData {
+        public string name;
+        public GameObject obj;
+        public int unlockCost;
+    }
+
 }

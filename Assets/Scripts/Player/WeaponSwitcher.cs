@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TurretTheFence.Utils;
+using TurretTheFence.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -72,7 +73,7 @@ namespace TurretTheFence.Player {
     [System.Serializable]
     public class WeaponMode : Mode {
 
-        public List<GameObject> guns = new List<GameObject>();
+        public List<WeaponData> weaponData = new List<WeaponData>();
         public int index = 0;
 
         public void OnStart() {
@@ -84,32 +85,32 @@ namespace TurretTheFence.Player {
         }
 
         public void OnDisable() {
-            guns.ForEach(go => go.SetActive(false));
+            weaponData.ForEach(wd => wd.obj.SetActive(false));
         }
 
         public void OnSwitchIndex(int index) {
-            if (index < guns.Capacity) {
+            if (index < weaponData.Capacity) {
                 SwitchTo(index);
             }
         }
 
         private void SwitchTo(int index) {
-            guns[this.index].SetActive(false);
+            weaponData[this.index].obj.SetActive(false);
             this.index = index;
-            guns[this.index].SetActive(true);
+            weaponData[this.index].obj.SetActive(true);
         }
         
         public void OnScrollIndex(int direction) {
-            int count = guns.Capacity;
+            int count = weaponData.Capacity;
             SwitchTo((index + direction + count) % count);
         }
 
         public string GetInventoryDisplay() {
             string output = "Weapons\n";
-            /*for (int i = 0; i < guns.Length; i++) {
-                GameObject gun = guns[i];
-                //output += string.Format("{0}. {1} (${2})\n", i + 1, turr.name, turr.cost);
-            }*/
+            for (int i = 0; i < weaponData.Capacity; i++) {
+                WeaponData weap = weaponData[i];
+                output += string.Format("{0}. {1}\n", i + 1, weap.name);
+            }
             return output;
         }
     }
