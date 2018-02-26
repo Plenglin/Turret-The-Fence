@@ -5,7 +5,7 @@ using CompleteProject;
 
 public class HomingMissile : MonoBehaviour {
 
-    public GameObject target;
+    public Vector3 target;
     public GameObject model;
     public AOEManager explosion;
     public ParticleSystem explosionParticles;
@@ -32,7 +32,7 @@ public class HomingMissile : MonoBehaviour {
             return;
         }
         if (Time.time >= creation + timeUntilExplosion) {
-            Explode(null);
+            Explode();
         }
 
         float maxTurn = turning * speed;
@@ -43,10 +43,10 @@ public class HomingMissile : MonoBehaviour {
         transform.rotation *= toRotate;
         transform.position += transform.forward.normalized * speed;*/
         //find the vector pointing from our position to the target
-        Vector3 offset = (target.transform.position - transform.position);
+        Vector3 offset = (target - transform.position);
 
         if (offset.magnitude <= minExplodeDistance) {
-            Explode(target.GetComponent<Collider>());
+            Explode();
             return;
         }
         //create the rotation we need to be in to look at the target
@@ -62,21 +62,18 @@ public class HomingMissile : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         Debug.Log(other);
         if (other.gameObject.tag == "TurretTargets") {
-            Explode(other);
+            Explode();
         }
     }
 
-    void Explode(Collider hit) {
+    void Explode() {
         explosionParticles.Stop();
         explosionParticles.Play();
-        if (hit != null) {
-            target.gameObject.GetComponent<EnemyHealth>().TakeDamage(directHitDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
-        }
         foreach (Collider collider in explosion.touching) {
             if (collider != null) {
                 EnemyHealth hp = collider.gameObject.GetComponent<EnemyHealth>();
                 if (hp != null) {
-                    hp.TakeDamage(splashDamage, target.GetComponent<Collider>().ClosestPoint(transform.position));
+                    hp.TakeDamage(splashDamage, collider.ClosestPoint(transform.position));
                 }
             }
         }

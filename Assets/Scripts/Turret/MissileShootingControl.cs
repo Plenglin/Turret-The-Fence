@@ -33,19 +33,24 @@ public class MissileShootingControl : MonoBehaviour {
 	}
 
     IEnumerator Fire() {
+        targetControl.enabled = false;
+        directionControl.enabled = false;
+        Vector3 target = targetControl.target.transform.position;
         foreach (Transform origin in missileOrigins) {
             Debug.Log("firing");
-            GameObject miss = Instantiate(missile);
+            GameObject miss = Instantiate(this.missile);
             miss.transform.position = origin.position;
             miss.transform.rotation = origin.rotation * Quaternion.Euler(
                 Random.Range(-missileSpread, missileSpread),
                 Random.Range(-missileSpread, missileSpread),
                 Random.Range(-missileSpread, missileSpread)
             );
-            HomingMissile tar = miss.GetComponent<HomingMissile>();
-            tar.target = targetControl.target;
+            HomingMissile missile = miss.GetComponent<HomingMissile>();
+            missile.target = target;
             yield return new WaitForSeconds(salvoDelay);
         }
+        targetControl.enabled = true;
+        directionControl.enabled = true;
     }
 
 }

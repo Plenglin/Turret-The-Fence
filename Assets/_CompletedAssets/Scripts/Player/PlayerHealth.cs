@@ -56,6 +56,15 @@ namespace CompleteProject
             damaged = false;
         }
 
+        public bool Heal(int amount) {
+            if (currentHealth == startingHealth) {
+                return false;
+            }
+            currentHealth = System.Math.Min(currentHealth + amount, startingHealth);
+            healthSlider.value = currentHealth;
+            return true;
+        }
+
 
         public void TakeDamage (int amount)
         {
