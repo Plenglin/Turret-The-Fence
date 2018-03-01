@@ -8,8 +8,9 @@ using UnityEngine.UI;
 namespace TurretTheFence.Weapons {
 
     public class GenericWeapon : MonoBehaviour {
-        
-        public MonoBehaviour firingManager, ammoManager;
+
+        public MonoBehaviour firingManager;
+        public MonoBehaviour ammoManager;
 
         public float fireDelay;
 

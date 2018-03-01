@@ -8,6 +8,9 @@ public class BeamShootingControl : MonoBehaviour {
     public float damagePerSecond;
     public GameObject tracerObject;
 
+    public AudioSource sound;
+    private bool shooting;
+
     private TurretTargetingControl targetControl;
     private int shootableMask;
     private LineRenderer tracer;
@@ -25,9 +28,16 @@ public class BeamShootingControl : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         float currentTime = Time.time;
-        if (targetControl.target != null && lastFiring + firingDelay <= currentTime) {
-            Fire();
-            lastFiring = currentTime;
+        if (targetControl.target != null) {
+            shooting = true;
+            sound.Play();
+            if (lastFiring + firingDelay <= currentTime) {
+                Fire();
+                lastFiring = currentTime;
+            }
+        } else {
+            shooting = false;
+            sound.Stop();
         }
         tracer.SetPosition(0, tracerObject.transform.position);
         tracer.enabled = (targetControl.target != null);

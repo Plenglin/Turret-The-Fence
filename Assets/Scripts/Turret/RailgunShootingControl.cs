@@ -9,6 +9,7 @@ public class RailgunShootingControl : MonoBehaviour {
     public float lineDuration;
     public int damagePerShot;
     public GameObject tracerObject;
+    public AudioSource sound;
 
     private TurretTargetingControl targetControl;
     private int shootableMask;
@@ -45,6 +46,7 @@ public class RailgunShootingControl : MonoBehaviour {
             // If the EnemyHealth component exist...
             if (enemyHealth != null) {
                 // ... the enemy should take damage.
+                sound.Play();
                 enemyHealth.TakeDamage(damagePerShot, enemy.transform.position);
                 tracer.SetPosition(1, enemy.transform.position + targetControl.pointingOffset);
             }

@@ -12,6 +12,8 @@ public class MissileShootingControl : MonoBehaviour {
     public float salvoDelay;
     public float reloadingTime;
 
+    public AudioSource sound;
+
     private TurretTargetingControl targetControl;
     private TurretDirectionControl directionControl;
     private float lastFire;
@@ -38,6 +40,7 @@ public class MissileShootingControl : MonoBehaviour {
         Vector3 target = targetControl.target.transform.position;
         foreach (Transform origin in missileOrigins) {
             Debug.Log("firing");
+            sound.Play();
             GameObject miss = Instantiate(this.missile);
             miss.transform.position = origin.position;
             miss.transform.rotation = origin.rotation * Quaternion.Euler(

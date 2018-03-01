@@ -11,6 +11,7 @@ namespace TurretTheFence.Weapons.Firing {
         public float accuracy, tracerDuration;
         public int damagePerShot;
         public Light muzzleFlash;
+        public AudioSource sound;
 
         private LineRenderer tracer;
 
@@ -30,6 +31,7 @@ namespace TurretTheFence.Weapons.Firing {
         private IEnumerator FinishFire() {
             muzzleFlash.enabled = true;
             tracer.enabled = true;
+            sound.Play();
             yield return new WaitForSeconds(tracerDuration);
             muzzleFlash.enabled = false;
             tracer.enabled = false;
