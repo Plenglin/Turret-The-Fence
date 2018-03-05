@@ -10,7 +10,7 @@ namespace TurretTheFence.UI {
     public class ShopItem {
 
         public bool repeatable;
-
+        public int price;
         public string title;
 
         [TextArea(3, 10)]
@@ -20,28 +20,39 @@ namespace TurretTheFence.UI {
         public BuyListener buyListener;
     }
 
-    [System.Serializable]
-    public class WeaponShopItem : ShopItem {
-
-    }
-
     public abstract class BuyListener : ScriptableObject {
-        public abstract void OnBuy();
+        public abstract void OnBuy(ShopPaneController pane);
     }
 
     public class Shop : MonoBehaviour {
 
-        public List<ShopItem> shopItems;
+        public List<ShopItem> shopItems = new List<ShopItem>();
+        public int columns = 2;
+        public GameObject shopItemBase;
+        public Transform contentPane;
 
         // Use this for initialization
         void Start() {
+            for (int i=0; i < shopItems.Capacity; i++) {
+                GameObject pane = Instantiate(shopItemBase, contentPane);
+                ShopPaneController paneController = pane.GetComponent<ShopPaneController>();
+                RectTransform transform = pane.GetComponent<RectTransform>();
 
+                paneController.entry = shopItems[i];
+                paneController.UpdateText();
+                int row = i / columns;
+                int col = i % columns;
+                float x = Mathf.Abs(col * transform.rect.width);
+                float y = -Mathf.Abs(row * transform.rect.height);
+                transform.anchoredPosition = new Vector2(x, y);
+            }
         }
 
         // Update is called once per frame
         void Update() {
 
         }
+
     }
 
 }

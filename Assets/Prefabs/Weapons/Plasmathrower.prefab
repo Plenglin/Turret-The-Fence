@@ -40,12 +40,12 @@ GameObject:
   - component: {fileID: 114426794562403262}
   - component: {fileID: 114743388795449178}
   m_Layer: 13
-  m_Name: FlameThrower
+  m_Name: Plasmathrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1669897041770616
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipSize: 50
   bullets: 50
-  displayName: Flammenwerfer
+  displayName: Plasmathrower
   reloadTime: 1
   reloading: 0
 --- !u!136 &136709647672714320

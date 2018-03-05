@@ -88,6 +88,10 @@ namespace TurretTheFence.Player {
             weaponData.ForEach(wd => wd.obj.SetActive(false));
         }
 
+        public void AddWeapon(GameObject weapon) {
+            weaponData.Add(weapon.GetComponent<WeaponData>());
+        }
+
         public void OnSwitchIndex(int index) {
             if (index < weaponData.Capacity) {
                 SwitchTo(index);

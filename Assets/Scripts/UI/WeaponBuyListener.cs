@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurretTheFence.Player;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ namespace TurretTheFence.UI {
 
         public GameObject weapon;
 
-        public override void OnBuy() {
+        public override void OnBuy(ShopPaneController pane) {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            PlayerWeapons weaponmanager = player.GetComponent<PlayerWeapons>();
+            WeaponMode weaponmanager = player.GetComponent<WeaponSwitcher>().weaponMode;
             Instantiate(weapon, player.transform);
             weaponmanager.AddWeapon(weapon);
         }
