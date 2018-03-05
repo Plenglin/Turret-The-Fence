@@ -7,6 +7,7 @@ TagManager:
   - TurretTargets
   - AmmoIndicator
   - InventoryIndicator
+  - Shop
   layers:
   - Default
   - TransparentFX
