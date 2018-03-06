@@ -29,7 +29,7 @@ namespace TurretTheFence.UI {
         public List<ShopItem> shopItems = new List<ShopItem>();
         public int columns = 2;
         public GameObject shopItemBase;
-        public Transform contentPane;
+        public RectTransform contentPane;
 
         // Use this for initialization
         void Start() {
@@ -46,6 +46,8 @@ namespace TurretTheFence.UI {
                 float y = -Mathf.Abs(row * transform.rect.height);
                 transform.anchoredPosition = new Vector2(x, y);
             }
+            float paneHeight = shopItemBase.GetComponent<RectTransform>().rect.height;
+            contentPane.sizeDelta = new Vector2(contentPane.rect.width, (shopItems.Capacity / columns + 1) * paneHeight);
         }
 
         // Update is called once per frame

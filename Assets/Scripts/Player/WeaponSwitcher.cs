@@ -75,8 +75,14 @@ namespace TurretTheFence.Player {
 
         public List<WeaponData> weaponData = new List<WeaponData>();
         public int index = 0;
+        public bool firingEnabled {
+            set {
+                weaponData.ForEach((wd) => wd.obj.GetComponent<WeaponEventListenable>().SetFiringEnabled(value));
+            }
+        }
 
         public void OnStart() {
+            firingEnabled = true;
             OnDisable();
         }
 

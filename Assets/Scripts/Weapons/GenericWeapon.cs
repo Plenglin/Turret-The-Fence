@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TurretTheFence.Weapons.Ammo;
 using TurretTheFence.Weapons.Firing;
@@ -7,12 +8,17 @@ using UnityEngine.UI;
 
 namespace TurretTheFence.Weapons {
 
-    public class GenericWeapon : MonoBehaviour {
+    public interface WeaponEventListenable {
+        void SetFiringEnabled(bool enabled);
+    }
+
+    public class GenericWeapon : MonoBehaviour, WeaponEventListenable {
 
         public MonoBehaviour firingManager;
         public MonoBehaviour ammoManager;
 
         public float fireDelay;
+        public bool canFireOverride = true;
 
         private float lastFired;
         private IAmmoManager ammo;
@@ -27,7 +33,7 @@ namespace TurretTheFence.Weapons {
         }
 
         private void FixedUpdate() {
-            if (Input.GetButton("Fire1") && Time.time >= lastFired + fireDelay && ammo.CanFire()) {
+            if (canFireOverride && Input.GetButton("Fire1") && Time.time >= lastFired + fireDelay && ammo.CanFire()) {
                 bool consumeAmmo = firing.OnFire();
                 if (consumeAmmo) {
                     ammo.OnFire();
@@ -43,13 +49,16 @@ namespace TurretTheFence.Weapons {
         private void Update() {
             ammoIndicator.text = ammo.GetAmmoIndicatorText();
         }
+
+        public void SetFiringEnabled(bool enabled) {
+            canFireOverride = enabled;
+        }
     }
 
     [System.Serializable]
     public class WeaponData {
         public string name;
         public GameObject obj;
-        public int unlockCost;
     }
 
 }

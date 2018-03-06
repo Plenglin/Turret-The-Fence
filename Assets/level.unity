@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1053114057}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -9461,13 +9461,10 @@ MonoBehaviour:
     weaponData:
     - name: Assault Rifle
       obj: {fileID: 422149678}
-      unlockCost: 0
     - name: Minigun
       obj: {fileID: 2020267003}
-      unlockCost: 0
     - name: Flamethrower
       obj: {fileID: 1906572823}
-      unlockCost: 0
     index: 0
   turretMode:
     turrets:

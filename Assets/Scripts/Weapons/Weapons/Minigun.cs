@@ -8,14 +8,13 @@ using UnityEngine.UI;
 
 namespace TurretTheFence.Weapons.Weapons {
 
-    public class Minigun : MonoBehaviour {
+    public class Minigun : MonoBehaviour, WeaponEventListenable {
 
         public MonoBehaviour muzzleObject;
 
         private IFiringManager muzzle;
 
         public float heatPerShot, cooldownTime;
-        
         public float firingDelay, spinUpTime, spinDownTime;
 
         public float heat = 0;
@@ -23,6 +22,7 @@ namespace TurretTheFence.Weapons.Weapons {
         public Text ammoIndicator;
         public GameObject spinner;
         public int barrels = 6;
+        public bool canFireOverride = true;
 
         private float maxSpinRate, currentSpinRate, spinUpRate, spinDownRate, cooldownRate, nextFire = 0, heatLightIntensity;
         private bool spinning = true, overheated = false;
@@ -57,6 +57,8 @@ namespace TurretTheFence.Weapons.Weapons {
         // Update is called once per frame
         void Update() {
             string output = String.Format("Heat: {0}%\nMinigun", (int)(heat * 100));
+            if (!canFireOverride) return;
+
             bool firing = Input.GetButton("Fire1");
             spinning = firing || Input.GetButton("Fire2");
             if (spinning) {
@@ -90,6 +92,10 @@ namespace TurretTheFence.Weapons.Weapons {
                 overheated = false;
             }
             ammoIndicator.text = output;
+        }
+
+        public void SetFiringEnabled(bool enabled) {
+            canFireOverride = enabled;
         }
     }
     
