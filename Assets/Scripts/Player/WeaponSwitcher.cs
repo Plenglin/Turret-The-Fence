@@ -77,7 +77,7 @@ namespace TurretTheFence.Player {
         public int index = 0;
         public bool firingEnabled {
             set {
-                weaponData.ForEach((wd) => wd.obj.GetComponent<WeaponEventListenable>().SetFiringEnabled(value));
+                weaponData.ForEach(wd => wd.obj.GetComponent<WeaponEventListenable>().SetFiringEnabled(value));
             }
         }
 
@@ -94,30 +94,33 @@ namespace TurretTheFence.Player {
             weaponData.ForEach(wd => wd.obj.SetActive(false));
         }
 
-        public void AddWeapon(GameObject weapon) {
-            weaponData.Add(weapon.GetComponent<WeaponData>());
+        public void AddWeapon(WeaponData weapon) {
+            weaponData.Add(weapon);
+            weapon.obj.GetComponent<WeaponEventListenable>().OnAddedToInventory(this);
+            weapon.obj.SetActive(false);
         }
 
         public void OnSwitchIndex(int index) {
-            if (index < weaponData.Capacity) {
+            if (index < weaponData.Count) {
                 SwitchTo(index);
             }
         }
 
         private void SwitchTo(int index) {
+            Debug.Log(index);
             weaponData[this.index].obj.SetActive(false);
             this.index = index;
             weaponData[this.index].obj.SetActive(true);
         }
         
         public void OnScrollIndex(int direction) {
-            int count = weaponData.Capacity;
+            int count = weaponData.Count;
             SwitchTo((index + direction + count) % count);
         }
 
         public string GetInventoryDisplay() {
             string output = "Weapons\n";
-            for (int i = 0; i < weaponData.Capacity; i++) {
+            for (int i = 0; i < weaponData.Count; i++) {
                 WeaponData weap = weaponData[i];
                 output += string.Format("{0}. {1}\n", i + 1, weap.name);
             }
@@ -172,6 +175,11 @@ namespace TurretTheFence.Player {
             }
             return output;
         }
+    }
+
+    public interface WeaponEventListenable {
+        void SetFiringEnabled(bool enabled);
+        void OnAddedToInventory(WeaponMode weaponMode);
     }
 
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurretTheFence.Player;
 using TurretTheFence.Weapons.Firing;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,13 +20,13 @@ namespace TurretTheFence.Weapons.Weapons {
 
         public float heat = 0;
         public Light muzzleFlash, overheat;
-        public Text ammoIndicator;
         public GameObject spinner;
         public int barrels = 6;
         public bool canFireOverride = true;
 
         private float maxSpinRate, currentSpinRate, spinUpRate, spinDownRate, cooldownRate, nextFire = 0, heatLightIntensity;
         private bool spinning = true, overheated = false;
+        private Text ammoIndicator;
 
         private RelativePlayerMovement playerMovement;
         private int shootables;
@@ -38,7 +39,8 @@ namespace TurretTheFence.Weapons.Weapons {
             cooldownRate = 1 / cooldownTime;
             heatLightIntensity = overheat.intensity;
 
-            playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<RelativePlayerMovement>();
+            ammoIndicator = GameObject.FindWithTag("AmmoIndicator").GetComponent<Text>();
+            playerMovement = GameObject.FindWithTag("Player").GetComponent<RelativePlayerMovement>();
             muzzle = (IFiringManager)muzzleObject;
         }
 
@@ -96,6 +98,10 @@ namespace TurretTheFence.Weapons.Weapons {
 
         public void SetFiringEnabled(bool enabled) {
             canFireOverride = enabled;
+        }
+
+        public void OnAddedToInventory(WeaponMode weaponMode) {
+
         }
     }
     

@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97a3bdac97cfb944921f5c643d722a0, type: 3}
   m_Name: MinigunSpawner
   m_EditorClassIdentifier: 
+  weaponName: Minigun
   weapon: {fileID: 1491050668479316, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}

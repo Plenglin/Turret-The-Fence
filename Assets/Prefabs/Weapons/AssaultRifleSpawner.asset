@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97a3bdac97cfb944921f5c643d722a0, type: 3}
   m_Name: AssaultRifleSpawner
   m_EditorClassIdentifier: 
+  weaponName: Assault Rifle
   weapon: {fileID: 1296274340839364, guid: 39e8f370b894fbc49909e27db555da60, type: 2}

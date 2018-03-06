@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurretTheFence.Player;
 using TurretTheFence.Weapons.Ammo;
 using TurretTheFence.Weapons.Firing;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TurretTheFence.Weapons {
-
-    public interface WeaponEventListenable {
-        void SetFiringEnabled(bool enabled);
-    }
 
     public class GenericWeapon : MonoBehaviour, WeaponEventListenable {
 
@@ -53,10 +50,19 @@ namespace TurretTheFence.Weapons {
         public void SetFiringEnabled(bool enabled) {
             canFireOverride = enabled;
         }
+
+        public void OnAddedToInventory(WeaponMode weaponMode) {
+
+        }
     }
 
     [System.Serializable]
     public class WeaponData {
+
+        public WeaponData(string name, GameObject obj) {
+            this.name = name;
+            this.obj = obj;
+        }
         public string name;
         public GameObject obj;
     }

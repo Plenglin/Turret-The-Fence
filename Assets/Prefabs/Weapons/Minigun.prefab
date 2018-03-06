@@ -507,9 +507,9 @@ MonoBehaviour:
   heat: 0
   muzzleFlash: {fileID: 108728584827019350}
   overheat: {fileID: 108135437603979856}
-  ammoIndicator: {fileID: 0}
   spinner: {fileID: 1355866330747298}
   barrels: 6
+  canFireOverride: 1
 --- !u!120 &120576826608393128
 LineRenderer:
   m_ObjectHideFlags: 1

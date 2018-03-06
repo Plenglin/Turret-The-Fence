@@ -28,7 +28,6 @@ namespace TurretTheFence.UI {
         }
 
         public void OnBuyButtonClick() {
-            Debug.Log(entry.repeatable);
             money.money -= entry.price;
             entry.buyListener.OnBuy(this);
             bought = true;
