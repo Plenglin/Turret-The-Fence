@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97a3bdac97cfb944921f5c643d722a0, type: 3}
-  m_Name: AssaultRifleSpawner
+  m_Name: WeaponPlasmathrowerSpawner
   m_EditorClassIdentifier: 
-  weaponName: Assault Rifle
-  weapon: {fileID: 1296274340839364, guid: 39e8f370b894fbc49909e27db555da60, type: 2}
+  weaponName: Plasmathrower
+  weapon: {fileID: 1654723901740894, guid: 14e56d493d8d174439c3ea7b783fe222, type: 2}

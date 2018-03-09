@@ -8,8 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a97a3bdac97cfb944921f5c643d722a0, type: 3}
-  m_Name: MinigunSpawner
+  m_Script: {fileID: 11500000, guid: d7c8abfe4a7c8ea4785baa251058329a, type: 3}
+  m_Name: TurretMissileSpawner
   m_EditorClassIdentifier: 
-  weaponName: Minigun
-  weapon: {fileID: 1491050668479316, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+  blueprintPrice: 0
+  initial: 0
+  turret:
+    name: 
+    cost: 0
+    turret: {fileID: 0}
+  increase: 0

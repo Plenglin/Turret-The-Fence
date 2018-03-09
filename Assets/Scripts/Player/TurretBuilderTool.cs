@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TurretTheFence.Player;
+using TurretTheFence.Turret;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ namespace TurretTheFence.Player {
         private TurretMode turretMode;
         private TurretType currentTurret;
         private Text dataDisplay;
+        private TurretManager turretMan;
 
         private void Awake() {
             dataDisplay = GameObject.FindGameObjectWithTag("AmmoIndicator").GetComponent<Text>();
@@ -21,6 +23,7 @@ namespace TurretTheFence.Player {
             turretMode = player.GetComponent<WeaponSwitcher>().turretMode;
             balance = player.GetComponent<MoneyControl>();
             floorMask = LayerMask.GetMask("Floor");
+            turretMan = GameObject.FindWithTag("TurretManager").GetComponent<TurretManager>();
         }
 
         private void OnEnable() {
@@ -34,7 +37,7 @@ namespace TurretTheFence.Player {
         public void OnTurretChange(TurretType newTurret) {
             Destroy(ghostTurret);
             currentTurret = newTurret;
-            ghostTurret = Instantiate(newTurret.turret);
+            ghostTurret = Instantiate(newTurret.prefab);
             ghostTurret.GetComponent<TurretDirectionControl>().enabled = false;
             ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
             ghostTurret.GetComponent<NavMeshObstacle>().enabled = false;
@@ -42,6 +45,7 @@ namespace TurretTheFence.Player {
         }
 
         void Update() {
+            int price = turretMan.PriceOf(currentTurret);
             RaycastHit floorHit;
             Ray ray = new Ray(player.transform.position, player.transform.forward);
             Vector3 turretPosition;
@@ -51,16 +55,17 @@ namespace TurretTheFence.Player {
             }
 
             if (Input.GetMouseButtonDown(1)) {
-                if (balance.money >= currentTurret.cost) {
+                if (balance.money >= price) {
                     GameObject newTurret = Instantiate(ghostTurret);
                     newTurret.GetComponent<TurretDirectionControl>().enabled = true;
                     newTurret.GetComponent<TurretTargetingControl>().enabled = true;
                     newTurret.GetComponent<NavMeshObstacle>().enabled = true;
                     newTurret.GetComponent<Collider>().enabled = true;
-                    balance.money -= currentTurret.cost;
+                    balance.money -= price;
+                    turretMan.AddTurret(newTurret);
                 }
             }
-            dataDisplay.text = string.Format("${0}\n{1}", currentTurret.cost, currentTurret.name);
+            dataDisplay.text = string.Format("${0}\n{1}", price, currentTurret.name);
         }
 
     }

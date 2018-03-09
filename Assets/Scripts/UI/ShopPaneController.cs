@@ -24,7 +24,7 @@ namespace TurretTheFence.UI {
         public void UpdateText() {
             transform.Find("Title").gameObject.GetComponent<Text>().text = entry.title;
             transform.Find("Description").gameObject.GetComponent<Text>().text = entry.desc;
-            buttonText.text = "Buy ($" + entry.price + ")";
+            buttonText.text = (bought && entry.repeatable) ? "Sold out!" : "Buy ($" + entry.price + ")";
         }
 
         public void OnBuyButtonClick() {

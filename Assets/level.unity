@@ -4883,19 +4883,20 @@ MonoBehaviour:
     buyListener: {fileID: 11400000, guid: e68c0fbca6bf76940b79a545d4f726d8, type: 2}
   - repeatable: 1
     price: 100
-    title: Railgun Upgrades
-    desc: Increase the overall effectiveness of the railgun.
-    buyListener: {fileID: 11400000, guid: 283b6c293a2265745b8f143212e09f46, type: 2}
+    title: Missile Turret
+    desc: 'Fires 8 homing missiles in a salvo. Those missiles do splash damage. Takes
+      a long time to reload. '
+    buyListener: {fileID: 11400000, guid: 069cd90b1a9498e479f592526cf962f8, type: 2}
   - repeatable: 1
     price: 100
     title: Railgun Upgrades
     desc: Increase the overall effectiveness of the railgun.
-    buyListener: {fileID: 11400000, guid: 283b6c293a2265745b8f143212e09f46, type: 2}
+    buyListener: {fileID: 0}
   - repeatable: 1
     price: 100
     title: Railgun Upgrades
     desc: Increase the overall effectiveness of the railgun.
-    buyListener: {fileID: 11400000, guid: 283b6c293a2265745b8f143212e09f46, type: 2}
+    buyListener: {fileID: 0}
   columns: 2
   shopItemBase: {fileID: 1284397858956114, guid: cc37dfb39af7c8843b906efbd4991e2e,
     type: 2}
@@ -5309,7 +5310,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 112132591}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.6632017
+  m_Size: 0.5779626
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5884,6 +5885,69 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1334548029}
+--- !u!1 &1334905792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1334905794}
+  - component: {fileID: 1334905793}
+  m_Layer: 0
+  m_Name: TurretManager
+  m_TagString: TurretManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1334905793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334905792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c079f6107f6e2d642b3e87367c2d65a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turrets:
+  - name: Railgun
+    baseBuildCost: 150
+    upgrades: 1
+    baseUpgradeCost: 100
+    buyIncrease: 1.05
+    bought: 1
+    prefab: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
+  - name: Beam
+    baseBuildCost: 200
+    upgrades: 0
+    baseUpgradeCost: 100
+    buyIncrease: 1.05
+    bought: 0
+    prefab: {fileID: 1708928527546234, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
+  - name: MLRS
+    baseBuildCost: 0
+    upgrades: 0
+    baseUpgradeCost: 0
+    buyIncrease: 0
+    bought: 0
+    prefab: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
+  buildIncreaseRate: 1.1
+--- !u!4 &1334905794
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334905792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.0250001, z: -0.096000016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 49
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338415520
 GameObject:
   m_ObjectHideFlags: 0
@@ -9169,14 +9233,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turrets:
   - name: Railgun
-    cost: 250
-    turret: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
+    baseBuildCost: 0
+    upgrades: 0
+    baseUpgradeCost: 0
+    buyIncrease: 1
+    bought: 0
+    prefab: {fileID: 0}
   - name: Beam
-    cost: 300
-    turret: {fileID: 1708928527546234, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
+    baseBuildCost: 0
+    upgrades: 0
+    baseUpgradeCost: 0
+    buyIncrease: 1
+    bought: 0
+    prefab: {fileID: 0}
   - name: MLRS
-    cost: 1000
-    turret: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
+    baseBuildCost: 0
+    upgrades: 0
+    baseUpgradeCost: 0
+    buyIncrease: 1
+    bought: 0
+    prefab: {fileID: 0}
 --- !u!114 &1935204564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9207,16 +9283,6 @@ MonoBehaviour:
       obj: {fileID: 422149678}
     index: 0
   turretMode:
-    turrets:
-    - name: Railgun
-      cost: 200
-      turret: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
-    - name: Beam
-      cost: 300
-      turret: {fileID: 1708928527546234, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
-    - name: MLRS
-      cost: 600
-      turret: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
     dataDisplay: {fileID: 543615226}
     tool: {fileID: 358070454}
 --- !u!82 &1935204566

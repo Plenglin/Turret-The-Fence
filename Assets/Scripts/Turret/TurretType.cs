@@ -6,7 +6,13 @@ using UnityEngine;
 public class TurretType {
 
     public string name;
-    public int cost;
-    public GameObject turret;
+    public int baseBuildCost, upgrades, baseUpgradeCost;
+    public float buyIncrease = 1;
+    public bool bought = false;
+    public GameObject prefab;
+
+    public int GetUpgradePrice() {
+        return (int) (baseUpgradeCost * Mathf.Pow(buyIncrease, upgrades));
+    }
 
 }

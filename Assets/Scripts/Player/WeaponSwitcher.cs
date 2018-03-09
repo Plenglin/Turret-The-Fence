@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TurretTheFence.Turret;
 using TurretTheFence.Utils;
 using TurretTheFence.Weapons;
 using UnityEngine;
@@ -107,7 +108,6 @@ namespace TurretTheFence.Player {
         }
 
         private void SwitchTo(int index) {
-            Debug.Log(index);
             weaponData[this.index].obj.SetActive(false);
             this.index = index;
             weaponData[this.index].obj.SetActive(true);
@@ -130,10 +130,10 @@ namespace TurretTheFence.Player {
 
     [System.Serializable]
     public class TurretMode : Mode {
-        public TurretType[] turrets;
         public Text dataDisplay;
         public TurretBuilderTool tool;
         private int index;
+        private TurretManager turretMan;
 
         private void SetIndex(int index) {
             this.index = index;
@@ -141,10 +141,11 @@ namespace TurretTheFence.Player {
         }
 
         public TurretType GetTurret() {
-            return turrets[index];
+            return turretMan[index];
         }
 
         public void OnStart() {
+            turretMan = GameObject.FindWithTag("TurretManager").GetComponent<TurretManager>();
             SetIndex(0);
             OnDisable();
         }
@@ -158,20 +159,20 @@ namespace TurretTheFence.Player {
         }
 
         public void OnSwitchIndex(int index) {
-            if (index < turrets.Length) {
+            if (index < turretMan.Count) {
                 SetIndex(index);
             }
         }
 
         public void OnScrollIndex(int direction) {
-            SetIndex((index + direction + turrets.Length) % turrets.Length);
+            SetIndex((index + direction + turretMan.Count) % turretMan.Count);
         }
 
         public string GetInventoryDisplay() {
             string output = "Turrets\n";
-            for (int i = 0; i < turrets.Length; i++) {
-                TurretType turr = turrets[i];
-                output += string.Format("{0}. {1} (${2})\n", i + 1, turr.name, turr.cost);
+            for (int i = 0; i < turretMan.Count; i++) {
+                TurretType turr = turretMan[i];
+                output += string.Format("{0}. {1} (${2})\n", i + 1, turr.name, turretMan.PriceOf(turr));
             }
             return output;
         }
