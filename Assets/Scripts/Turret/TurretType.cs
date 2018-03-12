@@ -7,12 +7,12 @@ public class TurretType {
 
     public string name;
     public int baseBuildCost, upgrades, baseUpgradeCost;
-    public float buyIncrease = 1;
+    public float upgradeIncreaseRate = 1;
     public bool bought = false;
     public GameObject prefab;
 
     public int GetUpgradePrice() {
-        return (int) (baseUpgradeCost * Mathf.Pow(buyIncrease, upgrades));
+        return (int) (baseUpgradeCost * Mathf.Pow(upgradeIncreaseRate, upgrades));
     }
 
 }

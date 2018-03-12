@@ -10,6 +10,8 @@ namespace TurretTheFence.Weapons.Firing {
 
         public float accuracy, tracerDuration;
         public int damagePerShot;
+
+        public ParticleSystem[] particles;
         public Light muzzleFlash;
         public AudioSource sound;
 
@@ -52,6 +54,9 @@ namespace TurretTheFence.Weapons.Firing {
                 tracer.SetPosition(1, hit.point);
                 if (health != null) {
                     health.TakeDamage(damagePerShot, hit.point);
+                }
+                foreach (ParticleSystem ps in particles) {
+                    ps.Emit(1);
                 }
                 StartCoroutine(FinishFire());
                 return true;

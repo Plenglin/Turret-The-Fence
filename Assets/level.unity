@@ -5310,7 +5310,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 112132591}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5779626
+  m_Size: 0.6361746
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5917,21 +5917,21 @@ MonoBehaviour:
     baseBuildCost: 150
     upgrades: 1
     baseUpgradeCost: 100
-    buyIncrease: 1.05
+    upgradeIncreaseRate: 1
     bought: 1
     prefab: {fileID: 1214834047752430, guid: 1ee32969446cb1c499ed3ea5f53394df, type: 2}
   - name: Beam
     baseBuildCost: 200
     upgrades: 0
     baseUpgradeCost: 100
-    buyIncrease: 1.05
+    upgradeIncreaseRate: 1
     bought: 0
     prefab: {fileID: 1708928527546234, guid: 93be03fae8c85c24997e1d45ff044b6a, type: 2}
   - name: MLRS
     baseBuildCost: 0
     upgrades: 0
     baseUpgradeCost: 0
-    buyIncrease: 0
+    upgradeIncreaseRate: 1
     bought: 0
     prefab: {fileID: 1224997254523260, guid: 1ce4004a8a5aeaf43b19e245b83b2244, type: 2}
   buildIncreaseRate: 1.1
@@ -5946,7 +5946,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 49
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338415520
 GameObject:
@@ -8950,6 +8950,57 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!1001 &1865477000
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.581
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.514
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840260907273020, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_RootOrder
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 198584196191089472, guid: 7fecf58ea3ff52145b1811b13ff7c5b7,
+        type: 2}
+      propertyPath: CollisionModule.plane0
+      value: 
+      objectReference: {fileID: 828418922}
+    - target: {fileID: 1491050668479316, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7fecf58ea3ff52145b1811b13ff7c5b7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1877170327
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,7 +9241,6 @@ GameObject:
   - component: {fileID: 1935204567}
   - component: {fileID: 1935204566}
   - component: {fileID: 1935204562}
-  - component: {fileID: 1935204563}
   - component: {fileID: 1935204564}
   - component: {fileID: 1935204571}
   - component: {fileID: 1935204570}
@@ -9220,39 +9270,6 @@ MonoBehaviour:
   currentStamina: 1
   staminaSlider: {fileID: 933464557}
   targetCamera: {fileID: 1503597082}
---- !u!114 &1935204563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1935204561}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8913d954046173e4e85c498d5a090592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turrets:
-  - name: Railgun
-    baseBuildCost: 0
-    upgrades: 0
-    baseUpgradeCost: 0
-    buyIncrease: 1
-    bought: 0
-    prefab: {fileID: 0}
-  - name: Beam
-    baseBuildCost: 0
-    upgrades: 0
-    baseUpgradeCost: 0
-    buyIncrease: 1
-    bought: 0
-    prefab: {fileID: 0}
-  - name: MLRS
-    baseBuildCost: 0
-    upgrades: 0
-    baseUpgradeCost: 0
-    buyIncrease: 1
-    bought: 0
-    prefab: {fileID: 0}
 --- !u!114 &1935204564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9265,7 +9282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1580510755}
-  money: 500
+  money: 10000
 --- !u!114 &1935204565
 MonoBehaviour:
   m_ObjectHideFlags: 0
