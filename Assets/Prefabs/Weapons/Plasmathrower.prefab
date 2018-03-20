@@ -194,6 +194,7 @@ MonoBehaviour:
   firingManager: {fileID: 114416742158183722}
   ammoManager: {fileID: 114743388795449178}
   fireDelay: 0.1
+  canFireOverride: 1
 --- !u!114 &114743388795449178
 MonoBehaviour:
   m_ObjectHideFlags: 1

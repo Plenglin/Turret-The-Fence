@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1359949294245602
 GameObject:
   m_ObjectHideFlags: 1
@@ -184,7 +184,8 @@ AudioSource:
   m_GameObject: {fileID: 1685993711244832}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300004, guid: 8434b04884c414ac6b468e10945685e6,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5f65f7a864d7742fda4f10edfde922d2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -323,6 +324,7 @@ MonoBehaviour:
   accuracy: 1
   tracerDuration: 0.02
   damagePerShot: 15
+  particles: []
   muzzleFlash: {fileID: 108273067208725812}
   sound: {fileID: 82616253343014468}
 --- !u!114 &114674459891705618
@@ -355,6 +357,7 @@ MonoBehaviour:
   firingManager: {fileID: 114100554800606992}
   ammoManager: {fileID: 114674459891705618}
   fireDelay: 0.1
+  canFireOverride: 1
 --- !u!120 &120692101264139794
 LineRenderer:
   m_ObjectHideFlags: 1
