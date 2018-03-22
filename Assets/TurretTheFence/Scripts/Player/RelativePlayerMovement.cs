@@ -16,7 +16,6 @@ public class RelativePlayerMovement : MonoBehaviour {
 
     public Camera targetCamera;
 
-    Vector3 movement;                   // The vector to store the direction of the player's movement.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
 #if !MOBILE_INPUT
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
@@ -60,10 +59,10 @@ public class RelativePlayerMovement : MonoBehaviour {
     {
         Vector3 yAxis = targetCamera.transform.forward;
         yAxis.y = 0;
+        yAxis.Normalize();
         Vector3 xAxis = Vector3.Cross(yAxis, Vector3.up);
-        Vector3 change = v * yAxis.normalized - h * xAxis.normalized;
-        // Set the movement vector based on the axis input.
-        movement.Set(change.x, 0f, change.z);
+        xAxis.Normalize();
+        Vector3 delta = (v * yAxis - h * xAxis).normalized;
 
         float speed;
         bool attemptingSprint = Input.GetKey(KeyCode.LeftShift);
@@ -84,9 +83,10 @@ public class RelativePlayerMovement : MonoBehaviour {
         staminaSlider.value = currentStamina;
         
         // Normalise the movement vector and make it proportional to the speed per second.
-        movement = movement.normalized * speed * Time.deltaTime;
+        Vector3 vel = delta.normalized * speed;
 
-        // Move the player to it's current position plus the movement.
-        playerRigidbody.MovePosition(transform.position + movement);
+        vel.y = playerRigidbody.velocity.y;
+        playerRigidbody.velocity = vel;
+        Debug.Log(playerRigidbody.velocity);
     }
 }
