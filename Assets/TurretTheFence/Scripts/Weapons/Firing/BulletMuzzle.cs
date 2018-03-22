@@ -44,7 +44,7 @@ namespace TurretTheFence.Weapons.Firing {
             // First rotate some degrees up, then rotate around forward
             float theta = UnityEngine.Random.Range(0, 360);
             float rad = UnityEngine.Random.Range(0, accuracy);
-            Vector3 direction = Quaternion.AngleAxis(theta, transform.forward) * (Quaternion.AngleAxis(rad, transform.right) * player.forward);
+            Vector3 direction = Quaternion.AngleAxis(theta, transform.forward) * (Quaternion.AngleAxis(rad, transform.right) * transform.forward);
 
             // Rotate a random amount sideways
             //Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
