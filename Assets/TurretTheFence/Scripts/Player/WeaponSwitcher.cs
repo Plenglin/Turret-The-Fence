@@ -147,7 +147,6 @@ namespace TurretTheFence.Player {
         public void OnStart() {
             turretMan = GameObject.FindWithTag("TurretManager").GetComponent<TurretManager>();
             SetIndex(0);
-            OnDisable();
         }
 
         public void OnEnable() {

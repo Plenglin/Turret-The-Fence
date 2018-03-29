@@ -9,7 +9,10 @@ using UnityEngine.UI;
 namespace TurretTheFence.Player {
     public class TurretBuilderTool : MonoBehaviour {
 
+        public float maxSlope;
+
         private GameObject ghostTurret, player;
+        private Transform cam;
         private MoneyControl balance;
         private int floorMask;
         private TurretMode turretMode;
@@ -20,24 +23,34 @@ namespace TurretTheFence.Player {
         private void Awake() {
             dataDisplay = GameObject.FindGameObjectWithTag("AmmoIndicator").GetComponent<Text>();
             player = GameObject.FindGameObjectWithTag("Player");
-            turretMode = player.GetComponent<WeaponSwitcher>().turretMode;
+            cam = GameObject.FindWithTag("Camera").transform;
             balance = player.GetComponent<MoneyControl>();
             floorMask = LayerMask.GetMask("Floor");
             turretMan = GameObject.FindWithTag("TurretManager").GetComponent<TurretManager>();
         }
 
+        private void Start() {
+            turretMode = player.GetComponent<WeaponSwitcher>().turretMode;
+        }
+
         private void OnEnable() {
-            ghostTurret.SetActive(true);
+            if (ghostTurret != null) {
+                ghostTurret.SetActive(true);
+            }
         }
 
         private void OnDisable() {
-            ghostTurret.SetActive(false);
+            if (ghostTurret != null) {
+                ghostTurret.SetActive(false);
+            }
         }
 
         public void OnTurretChange(TurretType newTurret) {
-            Destroy(ghostTurret);
+            if (ghostTurret != null) {
+                Destroy(ghostTurret);
+            }
             currentTurret = newTurret;
-            ghostTurret = Instantiate(newTurret.prefab);
+            ghostTurret = Instantiate(currentTurret.prefab);
             ghostTurret.GetComponent<TurretDirectionControl>().enabled = false;
             ghostTurret.GetComponent<TurretTargetingControl>().enabled = false;
             ghostTurret.GetComponent<NavMeshObstacle>().enabled = false;
@@ -47,25 +60,38 @@ namespace TurretTheFence.Player {
         void Update() {
             int price = turretMan.PriceOf(currentTurret);
             RaycastHit floorHit;
-            Ray ray = new Ray(player.transform.position, player.transform.forward);
             Vector3 turretPosition;
-            if (Physics.Raycast(ray, out floorHit, 100f, floorMask)) {
+            if (Physics.Raycast(cam.position, cam.forward, out floorHit, 100f, floorMask)) {
                 turretPosition = floorHit.point;
                 ghostTurret.transform.position = turretPosition;
+            } else {
+                return;
             }
 
-            if (Input.GetMouseButtonDown(1)) {
-                if (balance.money >= price) {
-                    GameObject newTurret = Instantiate(ghostTurret);
-                    newTurret.GetComponent<TurretDirectionControl>().enabled = true;
-                    newTurret.GetComponent<TurretTargetingControl>().enabled = true;
-                    newTurret.GetComponent<NavMeshObstacle>().enabled = true;
-                    newTurret.GetComponent<Collider>().enabled = true;
-                    balance.money -= price;
-                    turretMan.AddTurret(newTurret);
-                }
+            if (Input.GetMouseButtonDown(1) && balance.money >= price && IsValidTurretPos(turretPosition)) {
+                GameObject newTurret = Instantiate(ghostTurret);
+                newTurret.GetComponent<TurretDirectionControl>().enabled = true;
+                newTurret.GetComponent<TurretTargetingControl>().enabled = true;
+                newTurret.GetComponent<NavMeshObstacle>().enabled = true;
+                newTurret.GetComponent<Collider>().enabled = true;
+                balance.money -= price;
+                turretMan.AddTurret(newTurret);
             }
+            
             dataDisplay.text = string.Format("${0}\n{1}", price, currentTurret.name);
+        }
+        
+        bool IsValidTurretPos(Vector3 pos) {
+            RaycastHit hit;
+            if (Physics.Raycast(pos + Vector3.up * 0.05f, Vector3.down, out hit, 0.1f)) {
+                Debug.Log(Vector3.Dot(hit.normal, Vector3.up));
+                if (Vector3.Dot(hit.normal, Vector3.up) < maxSlope) {
+                    return false;
+                }
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }

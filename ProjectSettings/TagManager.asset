@@ -9,6 +9,7 @@ TagManager:
   - InventoryIndicator
   - Shop
   - TurretManager
+  - Camera
   layers:
   - Default
   - TransparentFX
