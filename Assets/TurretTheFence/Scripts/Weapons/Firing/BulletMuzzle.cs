@@ -18,10 +18,10 @@ namespace TurretTheFence.Weapons.Firing {
         private LineRenderer tracer;
 
         private int shootables;
-        private Transform player;
+        private Transform bulletSource;
 
         private void Awake() {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            bulletSource = GameObject.FindGameObjectWithTag("Camera").transform;
             tracer = GetComponent<LineRenderer>();
             shootables = LayerMask.GetMask("Shootable", "BulletObstacle");
         }
@@ -48,7 +48,7 @@ namespace TurretTheFence.Weapons.Firing {
 
             // Rotate a random amount sideways
             //Vector3 direction = (Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracy, accuracy), transform.up) * transform.forward);
-            Ray ray = new Ray(player.position, direction);
+            Ray ray = new Ray(bulletSource.position, direction);
             if (Physics.Raycast(ray, out hit, 100f, shootables)) {
                 EnemyHealth health = hit.collider.gameObject.GetComponent<EnemyHealth>();
                 tracer.SetPosition(1, hit.point);

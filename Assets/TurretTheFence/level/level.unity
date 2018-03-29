@@ -98,8 +98,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.75
     agentHeight: 1.2
-    agentSlope: 36.2
-    agentClimb: 0.35
+    agentSlope: 60
+    agentClimb: 1.95
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0.2
     minRegionArea: 10
@@ -1635,7 +1635,7 @@ Prefab:
     - target: {fileID: 224633596131871130, guid: 6ae819f05ad5b644b8dcfb95d52db45a,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.3908524
+      value: 0.41164243
       objectReference: {fileID: 0}
     - target: {fileID: 224633596131871130, guid: 6ae819f05ad5b644b8dcfb95d52db45a,
         type: 2}
@@ -4153,6 +4153,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d85d3a32fb6157d488e31edf82b7b1c4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.1868082
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d85d3a32fb6157d488e31edf82b7b1c4, type: 2}
   m_IsPrefabParent: 0
@@ -5058,7 +5062,7 @@ Transform:
   m_GameObject: {fileID: 1654709241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.59, y: 0, z: -2.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7556201, y: 1.5527692, z: 1.7556202}
   m_Children:
   - {fileID: 266953863}
   - {fileID: 166870937}
@@ -6711,7 +6715,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.16
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6719,7 +6723,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.23
+      value: -0.94
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6743,15 +6747,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalScale.z
-      value: 0.6613969
+      value: 0.55146027
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.8333611
+      value: 0.68823767
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.55438775
+      value: 0.45784548
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7f114e6b62ad5134b9ba4e0a01ddc050, type: 2}
       propertyPath: m_Layer

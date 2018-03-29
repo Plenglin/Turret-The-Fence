@@ -40,7 +40,7 @@ public class DayCycle : MonoBehaviour {
             s.enabled = isDay;
         }
         
-        sun.transform.rotation = Quaternion.Euler(time * 360, 0, 0);
+        // sun.transform.rotation = Quaternion.Euler(time * 360, 0, 0);
         lastIsDay = isDay;
 	}
 

@@ -84,9 +84,14 @@ public class RelativePlayerMovement : MonoBehaviour {
         
         // Normalise the movement vector and make it proportional to the speed per second.
         Vector3 vel = delta.normalized * speed;
+        /*RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit)) {
+            hit.
+        }*/
 
         vel.y = playerRigidbody.velocity.y;
         playerRigidbody.velocity = vel;
-        Debug.Log(playerRigidbody.velocity);
+        
+        //Debug.Log(playerRigidbody.velocity);
     }
 }
