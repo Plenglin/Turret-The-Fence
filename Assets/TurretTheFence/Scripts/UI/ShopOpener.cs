@@ -6,7 +6,7 @@ using UnityEngine;
 namespace TurretTheFence.UI {
     public class ShopOpener : MonoBehaviour {
 
-        private GameObject shop, player;
+        private GameObject shop, phead;
 
         private bool _showing;
         private bool showing {
@@ -18,14 +18,14 @@ namespace TurretTheFence.UI {
                 shop.SetActive(value);
                 Cursor.visible = value;
                 Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
-                player.GetComponent<FirstPersonCamera>().enabled = !value;
-                player.GetComponent<WeaponSwitcher>().weaponMode.firingEnabled = !value;
+                phead.GetComponent<FirstPersonCamera>().enabled = !value;
+                phead.GetComponent<WeaponSwitcher>().weaponMode.firingEnabled = !value;
             }
         }
 
         private void Awake() {
             shop = GameObject.FindWithTag("Shop");
-            player = GameObject.FindWithTag("Player");
+            phead = GameObject.FindWithTag("PlayerHead");
         }
 
         private void Start() {

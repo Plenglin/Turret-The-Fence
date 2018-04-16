@@ -10,6 +10,7 @@ TagManager:
   - Shop
   - TurretManager
   - Camera
+  - PlayerHead
   layers:
   - Default
   - TransparentFX

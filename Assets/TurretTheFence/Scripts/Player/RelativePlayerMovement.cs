@@ -52,7 +52,6 @@ public class RelativePlayerMovement : MonoBehaviour {
         RaycastHit hit;
         Vector3 down = -transform.up;
         if (Physics.Raycast(transform.position + new Vector3(0f, 0.05f, 0f), down, out hit, 0.1f)) {
-            Debug.Log(hit.normal);
             return Vector3.Angle(-down, hit.normal) < 45f;
         }
         return false;
@@ -85,6 +84,7 @@ public class RelativePlayerMovement : MonoBehaviour {
             float speed;
             if (sprinting) {
                 speed = state.GetSprintSpeed(this);
+                currentStamina -= staminaConsumptionRate * Time.deltaTime;
             } else {
                 speed = state.GetMovementSpeed(this);
             }

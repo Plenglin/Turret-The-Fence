@@ -11,7 +11,7 @@ namespace TurretTheFence.Player {
 
         public float maxSlope;
 
-        private GameObject ghostTurret, player;
+        private GameObject ghostTurret, player, playerHead;
         private Transform cam;
         private MoneyControl balance;
         private int floorMask;
@@ -23,6 +23,7 @@ namespace TurretTheFence.Player {
         private void Awake() {
             dataDisplay = GameObject.FindGameObjectWithTag("AmmoIndicator").GetComponent<Text>();
             player = GameObject.FindGameObjectWithTag("Player");
+            playerHead = GameObject.FindWithTag("PlayerHead");
             cam = GameObject.FindWithTag("Camera").transform;
             balance = player.GetComponent<MoneyControl>();
             floorMask = LayerMask.GetMask("Floor");
@@ -30,7 +31,7 @@ namespace TurretTheFence.Player {
         }
 
         private void Start() {
-            turretMode = player.GetComponent<WeaponSwitcher>().turretMode;
+            turretMode = playerHead.GetComponent<WeaponSwitcher>().turretMode;
         }
 
         private void OnEnable() {

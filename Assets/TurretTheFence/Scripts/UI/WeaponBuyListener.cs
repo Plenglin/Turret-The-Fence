@@ -15,7 +15,7 @@ namespace TurretTheFence.UI {
         public GameObject weapon;
 
         public override void OnBuy(ShopPaneController pane) {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("PlayerHead");
             WeaponMode weaponmanager = player.GetComponent<WeaponSwitcher>().weaponMode;
             GameObject instance = Instantiate(weapon, player.transform);
             weaponmanager.AddWeapon(new WeaponData(weaponName, instance));
