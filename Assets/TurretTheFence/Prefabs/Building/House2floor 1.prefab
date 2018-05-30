@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33720072998306692}
   - component: {fileID: 23190481048042290}
   - component: {fileID: 65481710010885590}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: PlatformPrototype08x01x08 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33511853407532920}
   - component: {fileID: 23108110685702666}
   - component: {fileID: 64049503280401430}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: JoinOuterPrototype02x06x02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33805092749754416}
   - component: {fileID: 23036839437400292}
   - component: {fileID: 65673641633291854}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: CubePrototype02x02x02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 33036468800832942}
   - component: {fileID: 23370923510659418}
   - component: {fileID: 64186558403232970}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: StepsPrototype04x02x02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4402747406224710}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: House2floor 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 33930374099499122}
   - component: {fileID: 23891543219102910}
   - component: {fileID: 65675007672634854}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: BlockPrototype04x04x04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 33672959193527118}
   - component: {fileID: 23880162911189906}
   - component: {fileID: 65355563365930082}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: BlockPrototype04x04x04 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 33658355524730990}
   - component: {fileID: 23726808625753090}
   - component: {fileID: 65294264996320164}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: PlatformPrototype08x01x08 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 33536698574662264}
   - component: {fileID: 23600348158886986}
   - component: {fileID: 65148570972102120}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: CubePrototype02x02x02 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 33318735811412306}
   - component: {fileID: 23594110417944066}
   - component: {fileID: 65234882289774912}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: PillarPrototype01x02x01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 33314003490129244}
   - component: {fileID: 23510071942611052}
   - component: {fileID: 65996989055268292}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: FloorPrototype08x01x08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 33563175020644410}
   - component: {fileID: 23482325833787196}
   - component: {fileID: 65060058437244950}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: CubePrototype02x02x02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 33129281065272098}
   - component: {fileID: 23811293634561118}
   - component: {fileID: 64326783852747446}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: StepsPrototype04x02x02 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 33958866398152684}
   - component: {fileID: 23240504835811630}
   - component: {fileID: 65511533121677228}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: PlatformPrototype08x01x08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 33284990080967648}
   - component: {fileID: 23317324897355180}
   - component: {fileID: 65318712324027220}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: CubePrototype02x02x02 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601290973418454}
   m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.16, y: 2.022, z: 2.41}
+  m_LocalPosition: {x: -2.16, y: 2, z: 2.41}
   m_LocalScale: {x: 0.27079925, y: 0.1864297, z: 0.19041716}
   m_Children: []
   m_Father: {fileID: 4402747406224710}
@@ -362,8 +362,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1460315006354106}
-  m_LocalRotation: {x: -0, y: 0.40773487, z: -0, w: 0.9131004}
-  m_LocalPosition: {x: -24.6, y: 0, z: 3.8}
+  m_LocalRotation: {x: 0.0047115902, y: -0.19943935, z: -0.023142844, w: 0.9796256}
+  m_LocalPosition: {x: 18.11, y: 0.23, z: -31.7}
   m_LocalScale: {x: 1.7556201, y: 1.5527692, z: 1.7556202}
   m_Children:
   - {fileID: 4976122228856756}
@@ -382,7 +382,7 @@ Transform:
   - {fileID: 4856673750855406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 48.125004, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -23.015001, z: -2.707}
 --- !u!4 &4420884502051160
 Transform:
   m_ObjectHideFlags: 1

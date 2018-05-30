@@ -519,7 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accuracy: 3
   tracerDuration: 0.01
-  damagePerShot: 5
+  damagePerShot: 10
   particles:
   - {fileID: 198584196191089472}
   muzzleFlash: {fileID: 108728584827019350}

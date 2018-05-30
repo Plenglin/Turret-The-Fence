@@ -51,7 +51,7 @@ public class RelativePlayerMovement : MonoBehaviour {
     public bool IsGrounded() {
         RaycastHit hit;
         Vector3 down = -transform.up;
-        if (Physics.Raycast(transform.position + new Vector3(0f, 0.05f, 0f), down, out hit, 0.1f)) {
+        if (Physics.Raycast(transform.position + new Vector3(0f, 0.05f, 0f), down, out hit, 0.2f)) {
             return Vector3.Angle(-down, hit.normal) < 45f;
         }
         return false;
